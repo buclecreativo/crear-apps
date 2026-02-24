@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucle Creativo · Planifica tu Aplicación</title>
+    <!-- Tipografía moderna e inspiradora -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos sutiles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6f9fc;
+            color: #1a2b3f;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Encabezado con personalidad */
+        .header {
+            background: linear-gradient(135deg, #0f2b3d, #1b3f5c);
+            color: white;
+            padding: 32px 0;
+            border-bottom: 6px solid #f4c28b;
+            box-shadow: 0 10px 20px rgba(0,20,30,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #f4c28b, #fadcb0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-tagline {
+            font-size: 1.15rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 12px auto 0;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 16px;
+        }
+
+        .tema-badge {
+            background-color: #f4c28b;
+            color: #1a2b3f;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: inline-block;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* MAIN */
+        main {
+            padding: 48px 0 64px;
+        }
+
+        /* tarjetas y secciones suaves */
+        .card-section {
+            background: white;
+            border-radius: 32px;
+            padding: 40px;
+            margin-bottom: 48px;
+            box-shadow: 0 10px 30px rgba(0,20,30,0.05);
+            border: 1px solid rgba(0,0,0,0.02);
+            transition: transform 0.2s ease;
+        }
+
+        .card-section:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 35px rgba(27, 63, 92, 0.08);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 24px;
+            color: #0f2b3d;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: #f4a261;
+            font-size: 2rem;
+        }
+
+        .highlight {
+            background: linear-gradient(145deg, #fef9e7, #fef3d9);
+            padding: 24px 28px;
+            border-radius: 28px;
+            border-left: 6px solid #f4c28b;
+            margin: 24px 0;
+            font-style: normal;
+        }
+
+        /* Ejemplos / tablas visuales */
+        .edt-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .edt-card {
+            background: #f0f6fa;
+            border-radius: 24px;
+            padding: 28px 20px;
+            text-align: center;
+            border-bottom: 4px solid #b3d3ea;
+        }
+
+        .edt-card h4 {
+            font-size: 1.5rem;
+            color: #1b3f5c;
+            margin-bottom: 12px;
+        }
+
+        .edt-card ul {
+            list-style: none;
+            text-align: left;
+            margin-top: 16px;
+        }
+
+        .edt-card li {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .edt-card i {
+            color: #f4a261;
+            width: 20px;
+        }
+
+        .gantt-viz {
+            background: #e5f0f7;
+            border-radius: 30px;
+            padding: 28px;
+            margin: 30px 0;
+        }
+
+        .gantt-row {
+            display: flex;
+            align-items: center;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+
+        .gantt-label {
+            width: 130px;
+            font-weight: 600;
+            color: #1e3d58;
+        }
+
+        .gantt-bar {
+            flex: 1;
+            height: 34px;
+            background: #d0e2f0;
+            border-radius: 20px;
+            position: relative;
+            margin: 0 12px;
+            min-width: 180px;
+        }
+
+        .bar-fill {
+            height: 34px;
+            background: linear-gradient(90deg, #3d7ea1, #6198b5);
+            border-radius: 20px;
+            color: white;
+            font-size: 0.9rem;
+            padding-left: 16px;
+            line-height: 34px;
+            white-space: nowrap;
+        }
+
+        .week-marks {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #3d5f77;
+            margin-left: 142px;
+            padding-right: 18px;
+        }
+
+        .recursos-presupuesto {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 36px 0;
+        }
+
+        .recurso-item, .costo-item {
+            background: #eef4f9;
+            border-radius: 40px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 500;
+        }
+
+        /* RETO FINAL */
+        .reto-caja {
+            background: #1b3f5c;
+            color: white;
+            border-radius: 36px;
+            padding: 40px;
+        }
+
+        .reto-caja h3 {
+            color: #f4c28b;
+            font-size: 2rem;
+            margin-bottom: 24px;
+        }
+
+        .btn-reto {
+            background: #f4c28b;
+            border: none;
+            color: #1a2b3f;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            margin-top: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-reto:hover {
+            background: #fad6a0;
+            transform: scale(1.02);
+        }
+
+        /* JUEGO EVALUACIÓN */
+        .quiz-container {
+            background: #ffffffd6;
+            backdrop-filter: blur(6px);
+            border-radius: 48px;
+            padding: 36px;
+            border: 2px solid rgba(244, 194, 139, 0.5);
+            margin-top: 20px;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #0f2b3d;
+        }
+
+        .quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 32px;
+            background: #faf4ec;
+            padding: 20px 24px;
+            border-radius: 40px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .quiz-option {
+            background: #eef4fa;
+            border-radius: 80px;
+            padding: 16px 28px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .quiz-option:hover {
+            background: #d9e6f2;
+            transform: translateY(-2px);
+        }
+
+        .quiz-option.selected {
+            border: 3px solid #3d7ea1;
+            background: #cbe0f0;
+            font-weight: 700;
+        }
+
+        .quiz-option.correct-feedback {
+            background: #a7d0b0;
+            border-color: #2f6b47;
+        }
+
+        .quiz-option.incorrect-feedback {
+            background: #f4b6b6;
+            border-color: #b13e3e;
+            opacity: 0.8;
+        }
+
+        .feedback-msg {
+            font-size: 1.2rem;
+            padding: 16px 24px;
+            border-radius: 60px;
+            background: #f4f0ea;
+            margin: 24px 0;
+            font-weight: 500;
+        }
+
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-quiz {
+            background: #1b3f5c;
+            color: white;
+            border: none;
+            padding: 14px 34px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-quiz:disabled {
+            background: #9fb8cc;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .btn-quiz i {
+            margin-right: 8px;
+        }
+
+        .puntaje {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: #f4c28b;
+            padding: 8px 28px;
+            border-radius: 60px;
+            color: #1a2b3f;
+        }
+
+        /* pie de página */
+        .footer {
+            background: #102a38;
+            color: #d4e2ed;
+            padding: 28px 0;
+            text-align: center;
+            font-size: 1.1rem;
+            border-top: 3px solid #f4c28b;
+        }
+
+        .footer i {
+            color: #f4a261;
+            margin: 0 4px;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .header h1 { font-size: 2rem; }
+            .section-title { font-size: 1.6rem; }
+            .quiz-options { grid-template-columns: 1fr; }
+            .gantt-row { flex-direction: column; align-items: start; gap: 6px; }
+            .week-marks { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <h1>⚡ Bucle creativo</h1>
+            <div class="header-tagline">
+                <i class="fas fa-heart" style="color: #f4a261;"></i> Taller diseñado con el corazón de un docente y la mente de un programador.
+            </div>
+            <div class="tema-badge">
+                <i class="fas fa-project-diagram"></i> Planificación: la brújula de tu app
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 1. objetivo (implícitamente integrado en el primer párrafo) -->
+        <section class="card-section">
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> Objetivo de aprendizaje</h2>
+            <p class="highlight" style="font-size: 1.3rem;">
+                <strong>Construir</strong> de manera colaborativa y reflexiva la planificación de una aplicación, definiendo tareas, desglosando el trabajo, cronogramas, recursos y presupuestos, para <strong>transformar una idea digital</strong> en un proyecto viable y significativo, desarrollando el pensamiento estratégico y la resiliencia ante los desafíos.
+            </p>
+        </section>
+
+        <!-- 2. contextualización humana -->
+        <section class="card-section">
+            <h2 class="section-title"><i class="fas fa-seedling"></i> Contexto: tu idea merece un mapa</h2>
+            <p>Imagina que tienes una idea increíble para una app que ayude a los estudiantes de tu barrio a organizar sus tareas. La emoción te desborda. Pero… ¿por dónde empiezas? Sin un plano, hasta el mejor arquitecto se pierde. Así es el desarrollo de software: sin planificación, el caos aparece, los plazos se olvidan y el equipo se desanima.</p>
+            <p style="margin-top: 20px;">La <strong>planificación</strong> no es papeleo frío; es el puente entre tu imaginación y la realidad. Como decían los antiguos estoicos: <em>"El primer paso es saber a dónde vas"</em>. Vamos a diseñar juntos ese mapa. Acá no solo aprenderás técnicas, sino a tomar decisiones con calma y claridad, incluso cuando los requisitos cambien. Porque la resiliencia también se planifica.</p>
+        </section>
+
+        <!-- 3. Desarrollo (conceptos detallados + ejemplos) -->
+        <section class="card-section">
+            <h2 class="section-title"><i class="fas fa-code-branch"></i> Desarrollo: los ladrillos de tu plan</h2>
+            
+            <h3><i class="fas fa-check-circle" style="color:#1b3f5c;"></i> Definición de actividades y tareas</h3>
+            <p>Dividir el sueño en pasos pequeños. Para nuestra app “EstudiApp”, las actividades principales podrían ser: <strong>Registro de usuarios, Módulo de tareas, Notificaciones, Pruebas</strong>. Cada actividad se rompe en tareas: por ejemplo, “Registro” incluye: diseñar BD, crear formulario, validar correo.</p>
+            
+            <h3 style="margin-top: 32px;"><i class="fas fa-sitemap"></i> Estructura de Desglose del Trabajo (EDT / WBS)</h3>
+            <p>Es el esqueleto jerárquico. Visualízalo como un árbol que organiza todo el trabajo.</p>
+            <div class="edt-grid">
+                <div class="edt-card"><h4>📱 Frontend</h4><ul><li><i class="fas fa-angle-right"></i> Pantalla login</li><li><i class="fas fa-angle-right"></i> Dashboard tareas</li><li><i class="fas fa-angle-right"></i> Perfil usuario</li></ul></div>
+                <div class="edt-card"><h4>⚙️ Backend</h4><ul><li><i class="fas fa-angle-right"></i> API REST</li><li><i class="fas fa-angle-right"></i> Base de datos</li><li><i class="fas fa-angle-right"></i> Autenticación JWT</li></ul></div>
+                <div class="edt-card"><h4>🧪 Pruebas</h4><ul><li><i class="fas fa-angle-right"></i> Test unitarios</li><li><i class="fas fa-angle-right"></i> Pruebas de carga</li><li><i class="fas fa-angle-right"></i> UX testing</li></ul></div>
+                <div class="edt-card"><h4>📦 Despliegue</h4><ul><li><i class="fas fa-angle-right"></i> Servidor</li><li><i class="fas fa-angle-right"></i> Dominio/SSL</li><li><i class="fas fa-angle-right"></i> Monitoreo</li></ul></div>
+            </div>
+
+            <h3><i class="fas fa-chart-line"></i> Cronograma (diagrama de Gantt)</h3>
+            <p>El tiempo es un recurso que no se compra. Visualicemos las tareas en semanas.</p>
+            <div class="gantt-viz">
+                <div class="week-marks">
+                    <span>Sem 1</span><span>Sem 2</span><span>Sem 3</span><span>Sem 4</span>
+                </div>
+                <div class="gantt-row"><span class="gantt-label">Frontend</span><div class="gantt-bar"><div class="bar-fill" style="width:75%;">12 días</div></div></div>
+                <div class="gantt-row"><span class="gantt-label">Backend</span><div class="gantt-bar"><div class="bar-fill" style="width:100%;">4 semanas</div></div></div>
+                <div class="gantt-row"><span class="gantt-label">Pruebas</span><div class="gantt-bar"><div class="bar-fill" style="width:50%;">2 semanas</div></div></div>
+                <div class="gantt-row"><span class="gantt-label">Documentación</span><div class="gantt-bar"><div class="bar-fill" style="width:40%;">desde semana 2</div></div></div>
+            </div>
+
+            <h3><i class="fas fa-cubes"></i> Asignación de recursos</h3>
+            <div class="recursos-presupuesto">
+                <span class="recurso-item"><i class="fas fa-user-tie"></i> 1 líder / PO</span>
+                <span class="recurso-item"><i class="fas fa-laptop-code"></i> 2 devs frontend</span>
+                <span class="recurso-item"><i class="fas fa-database"></i> 1 backend</span>
+                <span class="recurso-item"><i class="fas fa-paint-brush"></i> 1 diseñador UX/UI</span>
+                <span class="recurso-item"><i class="fas fa-cloud"></i> Servidor cloud</span>
+            </div>
+
+            <h3><i class="fas fa-coins"></i> Presupuesto del proyecto</h3>
+            <div style="display: flex; flex-wrap: wrap; gap:20px;">
+                <span class="costo-item"><i class="fas fa-desktop"></i> Hardware/cloud: $150</span>
+                <span class="costo-item"><i class="fas fa-mug-hot"></i> Equipo (4 personas * 40h): $2400</span>
+                <span class="costo-item"><i class="fas fa-crown"></i> Imprevistos (15%): $382</span>
+                <span class="costo-item"><i class="fas fa-file-invoice"></i> Total estimado: <strong>$2932</strong></span>
+            </div>
+            <p style="margin-top:30px;"><i class="fas fa-lightbulb"></i> ¿Notas cómo cada decisión (usar cierta tecnología, contratar un perfil) impacta el cronograma y el presupuesto? La planificación es un diálogo constante entre lo que sueñas y lo que es posible.</p>
+        </section>
+
+        <!-- 4. El reto final -->
+        <section class="card-section reto-caja">
+            <h3><i class="fas fa-fire"></i> El reto final: diseña la ruta de tu idea</h3>
+            <p><strong>Escenario:</strong> Tienes un encargo: desarrollar una app para que los estudiantes de tu colegio puedan intercambiar apuntes y ayudarse mutuamente (con supervisión docente). En equipos de 3, deberéis:</p>
+            <ul style="margin:20px 0 20px 30px; font-size:1.2rem;">
+                <li>✔ Definir al menos 10 tareas concretas.</li>
+                <li>✔ Crear una EDT con 3 niveles.</li>
+                <li>✔ Dibujar un cronograma de 4 semanas (formato libre).</li>
+                <li>✔ Asignar recursos (humanos y materiales).</li>
+                <li>✔ Calcular un presupuesto simbólico (con justificación).</li>
+            </ul>
+            <p><strong>Reflexión:</strong> ¿Qué actividad genera más incertidumbre? ¿Cómo podrías mitigar ese riesgo? Presentad vuestro plan al resto con creatividad.</p>
+            <button class="btn-reto" onclick="alert('¡Adelante, equipo! El lienzo está en blanco. Comienza a dibujar tu plan maestro.')"><i class="fas fa-download"></i> Descargar plantilla (simulacro)</button>
+        </section>
+
+        <!-- 5. Evaluación lúdica: Juego interactivo (Quiz) -->
+        <section class="card-section">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Mini desafío: ¿qué recuerdas?</h2>
+            <div class="quiz-container" id="quizApp">
+                <div class="quiz-header">
+                    <span><i class="fas fa-star"></i> Conecta conceptos</span>
+                    <span class="puntaje" id="puntosDisplay">0</span>
+                </div>
+
+                <div id="preguntaActual" class="quiz-question"></div>
+                <div id="opcionesContainer" class="quiz-options"></div>
+                <div id="feedback" class="feedback-msg"></div>
+
+                <div class="quiz-footer">
+                    <button class="btn-quiz" id="siguienteBtn" disabled><i class="fas fa-arrow-right"></i> Siguiente</button>
+                    <span id="contadorPreguntas">1 / 5</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>
+            <i class="fas fa-heart"></i> Diseñado por: Edwin Méndez J. 
+            <span style="margin:0 12px;">•</span> 
+            <i class="fas fa-brain"></i> Estoicidad + código = aprendizaje que perdura
+        </p>
+    </footer>
+
+    <script>
+        (function() {
+            // Banco de preguntas (EDT, Gantt, recursos, presupuesto, actividades)
+            const preguntas = [
+                {
+                    pregunta: "¿Qué significa EDT en gestión de proyectos?",
+                    opciones: ["Estructura de Desglose del Trabajo", "Equipo de Desarrollo Técnico", "Esquema de Datos y Tareas", "Evaluación de Diseño Temprano"],
+                    correcta: 0,
+                    explicacion: "✔️ ¡Así es! La EDT (WBS) descompone el proyecto en partes manejables."
+                },
+                {
+                    pregunta: "¿Para qué sirve principalmente un diagrama de Gantt?",
+                    opciones: ["Calcular el presupuesto", "Visualizar la duración y secuencia de tareas", "Asignar recursos humanos", "Documentar errores"],
+                    correcta: 1,
+                    explicacion: "✅ Correcto: el Gantt muestra el tiempo y las dependencias entre actividades."
+                },
+                {
+                    pregunta: "Dentro de la asignación de recursos, ¿cuál de estos es un recurso material?",
+                    opciones: ["Programadora frontend", "Servidor en la nube", "Líder del proyecto", "Diseñador UX"],
+                    correcta: 1,
+                    explicacion: "🎯 ¡Bien! El servidor es un recurso material/tecnológico, las personas son recursos humanos."
+                },
+                {
+                    pregunta: "¿Qué debes incluir en un presupuesto realista?",
+                    opciones: ["Solo sueldos", "Solo licencias de software", "Costos directos e imprevistos", "Marketing y nada más"],
+                    correcta: 2,
+                    explicacion: "🔍 Exacto. Un presupuesto contempla costos directos, indirectos y un margen para imprevistos (resiliencia financiera)."
+                },
+                {
+                    pregunta: "¿Cuál es la base del aprendizaje basado en problemas (ABP) aplicado aquí?",
+                    opciones: ["Memorizar definiciones", "Resolver un reto abierto con múltiples caminos", "Programar sin descanso", "Hacer exámenes teóricos"],
+                    correcta: 1,
+                    explicacion: "🧠 ¡Claro! El reto final es un problema real, con soluciones diversas, justo como en la vida."
+                }
+            ];
+
+            let indiceActual = 0;
+            let puntaje = 0;
+            let respuestaSeleccionada = false; // si ya seleccionó una opción en la pregunta actual
+            let opcionElegidaIndex = null;
+            let quizFinalizado = false;
+
+            const preguntaDiv = document.getElementById('preguntaActual');
+            const opcionesDiv = document.getElementById('opcionesContainer');
+            const feedbackDiv = document.getElementById('feedback');
+            const siguienteBtn = document.getElementById('siguienteBtn');
+            const contadorSpan = document.getElementById('contadorPreguntas');
+            const puntosSpan = document.getElementById('puntosDisplay');
+
+            function cargarPregunta(index) {
+                // limpiar estilos y estados
+                respuestaSeleccionada = false;
+                opcionElegidaIndex = null;
+                siguienteBtn.disabled = true;
+
+                const q = preguntas[index];
+                preguntaDiv.innerText = q.pregunta;
+                // generar opciones
+                let opcionesHtml = '';
+                q.opciones.forEach((op, i) => {
+                    opcionesHtml += `<div class="quiz-option" data-opt-index="${i}">${op}</div>`;
+                });
+                opcionesDiv.innerHTML = opcionesHtml;
+                feedbackDiv.innerHTML = ''; // limpiar feedback
+
+                // quitar clases previas de los options (se manejan con evento)
+                // actualizar contador
+                contadorSpan.innerText = `${index+1} / ${preguntas.length}`;
+            }
+
+            // manejar click en opciones
+            opcionesDiv.addEventListener('click', (e) => {
+                const target = e.target.closest('.quiz-option');
+                if (!target) return;
+                if (respuestaSeleccionada || quizFinalizado) return; // ya respondió o todo terminado
+
+                const indiceOpcion = parseInt(target.dataset.optIndex, 10);
+                const preguntaActual = preguntas[indiceActual];
+                const esCorrecta = (indiceOpcion === preguntaActual.correcta);
+
+                // marcar visualmente la opción seleccionada
+                document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected', 'correct-feedback', 'incorrect-feedback'));
+                target.classList.add('selected');
+
+                // aplicar feedback correcto/incorrecto
+                if (esCorrecta) {
+                    target.classList.add('correct-feedback');
+                    puntaje += 10; // cada acierto 10 puntos
+                } else {
+                    target.classList.add('incorrect-feedback');
+                    // también resaltar la correcta para aprender
+                    document.querySelectorAll('.quiz-option').forEach(opt => {
+                        if (parseInt(opt.dataset.optIndex,10) === preguntaActual.correcta) {
+                            opt.classList.add('correct-feedback');
+                        }
+                    });
+                }
+
+                // mostrar mensaje de retroalimentación
+                feedbackDiv.innerHTML = esCorrecta 
+                    ? `✅ ¡Bien! ${preguntaActual.explicacion}` 
+                    : `❌ Casi. La respuesta correcta es: "${preguntaActual.opciones[preguntaActual.correcta]}". ${preguntaActual.explicacion}`;
+
+                // actualizar puntaje visual
+                puntosSpan.innerText = puntaje;
+                respuestaSeleccionada = true;
+                opcionElegidaIndex = indiceOpcion;
+
+                // habilitar botón siguiente (a menos que sea la última y ya se respondió)
+                siguienteBtn.disabled = false;
+            });
+
+            // botón siguiente
+            siguienteBtn.addEventListener('click', () => {
+                if (!respuestaSeleccionada) return; // no debería pasar porque está disabled
+
+                if (indiceActual < preguntas.length - 1) {
+                    indiceActual++;
+                    cargarPregunta(indiceActual);
+                } else {
+                    // llegamos al final del juego
+                    feedbackDiv.innerHTML = `🎉 ¡Has completado el desafío! Puntaje final: ${puntaje} puntos. Sigue planificando con propósito.`;
+                    siguienteBtn.disabled = true;
+                    opcionesDiv.innerHTML = ''; // quitar opciones
+                    preguntaDiv.innerText = '✨ ¡Grandioso! Revisa tus respuestas.';
+                    quizFinalizado = true;
+                    contadorSpan.innerText = '5/5 ✓';
+                }
+            });
+
+            // iniciar primera pregunta
+            cargarPregunta(0);
+            puntosSpan.innerText = '0';
+        })();
+    </script>
+</body>
+</html>

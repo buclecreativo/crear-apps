@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucle Creativo · Análisis de requerimientos</title>
+  <!-- Fuentes modernas y armónicas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome para iconos sutiles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f8fafc;
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    /* Estructura limpia y jerarquía visual */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 2rem;
+    }
+
+    /* Encabezado con identidad */
+    .site-header {
+      background: #ffffffd9;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding: 0.9rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-icon {
+      font-size: 2rem;
+      color: #0f3b5e;
+    }
+    .logo-text {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #0a2942;
+      line-height: 1.2;
+    }
+    .logo-tagline {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #54708f;
+      margin-top: 2px;
+      font-style: italic;
+    }
+    .header-tema {
+      background: #eaf3fa;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      color: #0f3b5e;
+      border: 1px solid #bed9f0;
+      font-size: 1rem;
+    }
+    .header-tema i {
+      margin-right: 6px;
+      color: #22668d;
+    }
+
+    /* pie de página */
+    .site-footer {
+      background: #1e2b39;
+      color: #cbd5e1;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      border-top: 3px solid #2d4b65;
+    }
+    .site-footer span {
+      font-weight: 500;
+      color: #b2d3f0;
+    }
+
+    /* tarjetas suaves, espacios */
+    .card {
+      background: #ffffff;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: 0 8px 30px rgba(0,30,50,0.04);
+      margin-bottom: 2.5rem;
+      border: 1px solid #eef2f6;
+    }
+
+    .badge {
+      background: #d4e2f0;
+      color: #0f3b5e;
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 1rem;
+      letter-spacing: 0.3px;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 0.75rem;
+      color: #0a2942;
+    }
+    h2 i {
+      color: #3975a6;
+      margin-right: 10px;
+    }
+    h3 {
+      font-size: 1.5rem;
+      margin: 1.8rem 0 1rem 0;
+      color: #1e405e;
+      border-left: 5px solid #7ab7d4;
+      padding-left: 1.2rem;
+    }
+
+    .grid-2, .grid-3 {
+      display: grid;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .grid-2 { grid-template-columns: repeat(2,1fr); }
+    .grid-3 { grid-template-columns: repeat(3,1fr); }
+
+    .concept-card {
+      background: #f2f7fd;
+      padding: 1.8rem 1.5rem;
+      border-radius: 24px;
+      transition: 0.2s ease;
+    }
+    .concept-card:hover {
+      background: #e3effa;
+    }
+    .concept-card i {
+      font-size: 2.2rem;
+      color: #22668d;
+      margin-bottom: 1rem;
+    }
+
+    .ejemplo {
+      background: #f0f7fb;
+      border-left: 6px solid #4d8bb9;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      margin: 2rem 0;
+      font-style: normal;
+    }
+
+    .btn-reto {
+      background: #1f4662;
+      color: white;
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin: 1rem 0 0.5rem;
+      display: inline-block;
+      box-shadow: 0 4px 10px rgba(0,50,80,0.2);
+    }
+    .btn-reto:hover {
+      background: #0f3b5e;
+    }
+
+    /* juego interactivo */
+    .quiz-container {
+      background: linear-gradient(145deg, #f2f9ff, #ffffff);
+      border-radius: 40px;
+      padding: 2.5rem 2rem;
+      border: 2px solid #c1ddec;
+    }
+    .question-box {
+      background: #ffffff;
+      border-radius: 40px;
+      padding: 2rem;
+      box-shadow: 0 6px 14px #d9e6f2;
+    }
+    .question-text {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      color: #0a2942;
+    }
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .option {
+      background: #f1f5f9;
+      border-radius: 60px;
+      padding: 1rem 2rem;
+      border: 2px solid transparent;
+      font-weight: 500;
+      cursor: pointer;
+      transition: 0.15s;
+      display: flex;
+      align-items: center;
+    }
+    .option:hover {
+      background: #e1ecf7;
+      border-color: #aac9e3;
+    }
+    .option.selected {
+      background: #cbe3fe;
+      border-color: #1f6fb0;
+      font-weight: 600;
+    }
+    .feedback {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border-radius: 60px;
+      background: #eef2f6;
+      margin: 1.5rem 0;
+    }
+    .feedback.correct {
+      background: #d9f0e1;
+      color: #0e6245;
+    }
+    .feedback.incorrect {
+      background: #ffe6e5;
+      color: #aa302a;
+    }
+    .quiz-controls {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-quiz {
+      background: #1f4662;
+      border: none;
+      color: white;
+      padding: 0.9rem 2.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-quiz:disabled {
+      background: #b3c9dd;
+      cursor: not-allowed;
+    }
+    .score-badge {
+      font-size: 1.5rem;
+      font-weight: 700;
+      background: #0a2942;
+      color: white;
+      padding: 0.6rem 1.8rem;
+      border-radius: 60px;
+    }
+    .reset-quiz {
+      background: transparent;
+      border: 2px solid #1f4662;
+      color: #1f4662;
+      padding: 0.6rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+    }
+
+    /* responsive */
+    @media (max-width: 800px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      h2 { font-size: 1.8rem; }
+      .site-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+      .container { padding: 1.5rem; }
+    }
+    @media (max-width: 500px) {
+      .quiz-controls { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo-area">
+      <i class="fas fa-code-branch logo-icon"></i>
+      <div>
+        <div class="logo-text">Bucle creativo</div>
+        <div class="logo-tagline">Taller diseñado con el corazón de un docente y la mente de un programador.</div>
+      </div>
+    </div>
+    <div class="header-tema"><i class="fas fa-microchip"></i> Análisis de requerimientos · 2° curso</div>
+  </header>
+
+  <main class="container">
+    <!-- Título principal motivador -->
+    <div class="card" style="background: #e7f0fa;">
+      <span class="badge"><i class="far fa-lightbulb"></i> PIENSA EN GRANDE</span>
+      <h1 style="font-size: 3rem; line-height: 1.2; margin-bottom: 0.5rem;">Construye sueños digitales:<br>los cimientos invisibles</h1>
+      <p style="font-size: 1.4rem; color: #25597a;">Más que código: escuchar, priorizar y dar forma a lo que las personas necesitan.</p>
+    </div>
+
+    <!-- Objetivo de aprendizaje (un párrafo) -->
+    <div class="card">
+      <i class="fas fa-bullseye" style="color:#1f6fb0; font-size: 2rem; margin-bottom: 1rem;"></i>
+      <h2>Brújula del taller</h2>
+      <p style="font-size: 1.35rem; font-weight: 400; background: #eaf4fc; padding: 2rem; border-radius: 28px;"><strong style="font-weight: 700;">Analizar</strong> necesidades, usuarios y restricciones de una aplicación mediante la identificación de requerimientos funcionales, no funcionales y técnicos, integrando empatía con los stakeholders y criterios de priorización, para construir soluciones tecnológicas éticas, viables y centradas en el ser humano.</p>
+    </div>
+
+    <!-- Contextualización narrativa -->
+    <div class="card">
+      <h2><i class="fas fa-seedling"></i> El origen: tu barrio, tus ideas</h2>
+      <p style="font-size: 1.2rem;">¿Has visto algún negocio de tu barrio que aún apunta pedidos en una libreta? Imagina que puedes crear una app para Doña María, la de la tienda de la esquina. Ella te cuenta: “necesito que los clientes me encarguen por WhatsApp, pero sin perderme, y saber si hay stock”. Justo ahí empieza todo. Antes de escribir una sola línea de código, debes entender su mundo, sus miedos a la tecnología y lo que para ella es “fácil”. Bienvenido al análisis de requerimientos: el puente entre una necesidad humana y una solución digital. Vas a ser detective, arquitecto y psicólogo a la vez.</p>
+    </div>
+
+    <!-- Desarrollo detallado con conceptos -->
+    <div class="card">
+      <h2><i class="fas fa-cubes"></i> Los planos de tu app</h2>
+      <p style="margin-bottom: 2rem;">Vamos por partes. Cada tipo de requerimiento es un lente para ver el proyecto completo.</p>
+      
+      <div class="grid-2">
+        <!-- funcionales -->
+        <div class="concept-card">
+          <i class="fas fa-check-circle"></i>
+          <h3>Requerimientos funcionales</h3>
+          <p><strong>Lo que el sistema HARÁ.</strong> Son acciones, comportamientos, procesos. Ejemplo: “La app debe enviar un mensaje de confirmación al recibir un pedido”. Si no lo hace, la función no existe. En el caso de la tienda: “registrar producto, mostrar catálogo, actualizar stock”.</p>
+        </div>
+        <!-- no funcionales -->
+        <div class="concept-card">
+          <i class="fas fa-shield-alt"></i>
+          <h3>Requerimientos no funcionales</h3>
+          <p><strong>Cómo debe ser la experiencia.</strong> Atributos de calidad: rapidez (rendimiento), seguridad, usabilidad. “Doña María necesita que cargue en 2 segundos aunque el internet esté lento”. No son funciones visibles, pero definen el placer de uso.</p>
+        </div>
+        <!-- técnicos -->
+        <div class="concept-card">
+          <i class="fas fa-microchip"></i>
+          <h3>Requisitos técnicos</h3>
+          <p><strong>Restricciones de construcción.</strong> Plataforma (Android/iOS/web), lenguaje, base de datos. Ejemplo: “desarrollar con flutter para usar mismo código en iOS y Android” o “requiere cámara con enfoque manual”.</p>
+        </div>
+        <!-- stakeholders -->
+        <div class="concept-card">
+          <i class="fas fa-users"></i>
+          <h3>Usuarios & stakeholders</h3>
+          <p><strong>Quiénes viven la app.</strong> Usuarios finales (Doña María, clientes) y stakeholders (dueño, proveedores, repartidor). Cada uno tiene necesidades distintas. Si el repartidor necesita geolocalización y no lo consideras, el sistema falla.</p>
+        </div>
+      </div>
+
+      <div class="concept-card" style="margin-top: 1rem;">
+        <i class="fas fa-balance-scale"></i>
+        <h3>Priorización de requerimientos · MoSCoW</h3>
+        <p><strong>Must have (obligatorio), Should have (debería), Could have (podría), Won't have (no ahora).</strong> Con Doña María, lo vital es recibir pedidos y notificar. “Podría tener” un historial de ventas, pero no es esencial en la versión 1. Priorizar evita proyectos infinitos.</p>
+      </div>
+
+      <!-- Ejemplo práctico contextualizado -->
+      <div class="ejemplo">
+        <i class="fas fa-pencil-ruler" style="font-size: 2rem; margin-right: 1rem;"></i>
+        <p><strong>Escenario real:</strong> Para la app de la tienda de barrio, enumera:<br>
+        ✅ Funcional: “registrar pedido con nombre del cliente, productos y total”.<br>
+        ⚙️ No funcional: “debe poder usarse sin conexión y sincronizar después”.<br>
+        🧩 Técnico: “usar Firebase para datos en tiempo real”.<br>
+        🧑‍🤝‍🧑 Stakeholders: dueña (quiere simplicidad), clientes (quieren fotos de productos), proveedor (quiere reporte de ventas). Prioridad MUST: flujo de pedido y foto de productos (should have).</p>
+      </div>
+    </div>
+
+    <!-- Reto final (aprendizaje basado en problemas) -->
+    <div class="card" style="background: #f3f1fe;">
+      <h2><i class="fas fa-code-pull-request"></i> El reto final: «Raíces digitales»</h2>
+      <p style="font-size: 1.2rem;">En equipos de 3, imaginen que una cooperativa de artesanos de Otavalo les pide una plataforma para vender sus tejidos a todo el país. Elabora un documento de análisis que incluya:</p>
+      <ul style="margin: 1.5rem 0 1rem 2rem; font-size: 1.15rem;">
+        <li><i class="fas fa-caret-right"></i> 5 requerimientos funcionales (acciones concretas).</li>
+        <li><i class="fas fa-caret-right"></i> 4 no funcionales (rendimiento, accesibilidad, idioma, privacidad).</li>
+        <li><i class="fas fa-caret-right"></i> Requisitos técnicos (dispositivos, stack sugerido).</li>
+        <li><i class="fas fa-caret-right"></i> Lista de stakeholders (artesanos, clientes, transportistas, etc).</li>
+        <li><i class="fas fa-caret-right"></i> Priorización con método MoSCoW y justificación breve.</li>
+      </ul>
+      <p><strong>Presenten su análisis al resto de la clase como si fueran consultores senior.</strong> Lo importante no es la tecnología, sino la comprensión del entorno humano.</p>
+      <button class="btn-reto" onclick="alert('🧠 Recuerda: Escucha primero, programa después. ¡Tú puedes!')"><i class="fas fa-lightbulb"></i> Tomar perspectiva</button>
+    </div>
+
+    <!-- Evaluación lúdica: juego interactivo -->
+    <div class="card quiz-container">
+      <h2 style="margin-top: 0;"><i class="fas fa-gamepad"></i> Game over? No, ¡aprueba con estilo!</h2>
+      <p>Demuestra lo que asimilaste. 5 preguntas, puntaje máximo 500.</p>
+      
+      <div id="quizArea" class="question-box">
+        <div class="question-text" id="questionDisplay">Cargando...</div>
+        <div id="optionsContainer" class="options"></div>
+        <div id="feedbackArea" class="feedback"></div>
+        <div class="quiz-controls">
+          <button class="btn-quiz" id="nextBtn" disabled><i class="fas fa-arrow-right"></i> Siguiente</button>
+          <div class="score-badge" id="scoreDisplay">0/500</div>
+          <button class="reset-quiz" id="resetQuizBtn"><i class="fas fa-sync-alt"></i> Reiniciar</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <span>Diseñado por: Edwin Méndez J.</span> · Con vocación de enseñar con claridad y humanidad.
+  </footer>
+
+  <!-- JavaScript ES6+ juego interactivo -->
+  <script>
+    (function() {
+      // banco de preguntas contextualizadas, 5 items
+      const questions = [
+        {
+          question: "¿Cuál de los siguientes es un requerimiento FUNCIONAL para una app de una tienda de barrio?",
+          options: [
+            "Que cargue en menos de 2 segundos",
+            "Registrar el nombre del producto y su precio",
+            "Usar cifrado en contraseñas",
+            "Disponibilidad 99%"
+          ],
+          correct: 1
+        },
+        {
+          question: "¿Qué característica define un requerimiento NO FUNCIONAL?",
+          options: [
+            "La app debe permitir pago con tarjeta",
+            "Los usuarios deben poder registrarse con email",
+            "La app debe responder fluidamente incluso con señal 3G",
+            "Escanear código de barras"
+          ],
+          correct: 2
+        },
+        {
+          question: "¿Quiénes son los stakeholders en un proyecto de software?",
+          options: [
+            "Solo los programadores",
+            "Únicamente los clientes finales",
+            "Cualquier persona u organización afectada por el sistema (propietarios, usuarios, operadores)",
+            "El servidor de base de datos"
+          ],
+          correct: 2
+        },
+        {
+          question: "Si en una app de delivery, decides que 'agregar calificación al repartidor' es deseable pero no esencial para el lanzamiento, ¿qué prioridad tiene según MoSCoW?",
+          options: [
+            "Must have",
+            "Should have",
+            "Could have",
+            "Won't have"
+          ],
+          correct: 2  // Could have (podría tener)
+        },
+        {
+          question: "¿Cuál de los siguientes es un REQUISITO TÉCNICO?",
+          options: [
+            "La app debe recordar preferencias del usuario",
+            "El sistema debe desarrollarse en Kotlin para Android y Swift para iOS",
+            "Los pedidos deben confirmarse por correo",
+            "La interfaz debe ser colorida"
+          ],
+          correct: 1
+        }
+      ];
+
+      let currentQuestionIndex = 0;
+      let score = 0;
+      let selectedOption = null; // índice de opción seleccionada
+      let answerSubmitted = false; // ya evaluó esta pregunta?
+      let quizCompleted = false;
+
+      const questionEl = document.getElementById('questionDisplay');
+      const optionsEl = document.getElementById('optionsContainer');
+      const feedbackEl = document.getElementById('feedbackArea');
+      const nextBtn = document.getElementById('nextBtn');
+      const scoreSpan = document.getElementById('scoreDisplay');
+      const resetBtn = document.getElementById('resetQuizBtn');
+
+      function renderQuestion() {
+        if (quizCompleted && currentQuestionIndex >= questions.length) {
+          questionEl.innerText = "✨ ¡Completaste el desafío! ✨";
+          optionsEl.innerHTML = '';
+          feedbackEl.innerHTML = `Puntaje final: ${score} / 500 puntos. Reflexiona y reinicia si quieres.`;
+          nextBtn.disabled = true;
+          return;
+        }
+
+        const q = questions[currentQuestionIndex];
+        questionEl.innerText = `${currentQuestionIndex+1}. ${q.question}`;
+        
+        // crear opciones
+        let htmlStr = '';
+        for (let i = 0; i < q.options.length; i++) {
+          const isSelected = (selectedOption === i);
+          htmlStr += `<div class="option ${isSelected ? 'selected' : ''}" data-opt-index="${i}">${q.options[i]}</div>`;
+        }
+        optionsEl.innerHTML = htmlStr;
+
+        // si ya se respondió esta pregunta, mostramos feedback y desactivamos clicks
+        if (answerSubmitted) {
+          const isCorrect = (selectedOption === q.correct);
+          feedbackEl.innerText = isCorrect ? '✅ Correcto! bien analizado.' : `❌ Incorrecto. La respuesta correcta es: ${q.options[q.correct]}`;
+          feedbackEl.className = isCorrect ? 'feedback correct' : 'feedback incorrect';
+          // desactivar clicks en opciones (quitando listeners o clase pointer-events)
+          document.querySelectorAll('.option').forEach(opt => {
+            opt.style.pointerEvents = 'none';
+          });
+          nextBtn.disabled = false;
+        } else {
+          feedbackEl.innerText = '';
+          feedbackEl.className = 'feedback';
+          nextBtn.disabled = true;
+          document.querySelectorAll('.option').forEach(opt => {
+            opt.style.pointerEvents = 'auto';
+          });
+        }
+
+        // attach events a opciones (solo si no respondida)
+        if (!answerSubmitted) {
+          document.querySelectorAll('.option').forEach(opt => {
+            opt.addEventListener('click', (e) => {
+              if (answerSubmitted) return;
+              const idx = parseInt(e.currentTarget.dataset.optIndex, 10);
+              selectedOption = idx;
+              // quitar selected de todos y poner en el actual
+              document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+              e.currentTarget.classList.add('selected');
+            });
+          });
+        }
+      }
+
+      function evaluateAnswer() {
+        if (answerSubmitted || selectedOption === null) return;
+        const q = questions[currentQuestionIndex];
+        const isCorrect = (selectedOption === q.correct);
+        if (isCorrect) {
+          score += 100; // cada pregunta 100 puntos
+        }
+        scoreSpan.innerText = score + '/500';
+        answerSubmitted = true;
+
+        // mostrar feedback
+        if (isCorrect) {
+          feedbackEl.innerText = '✅ Correcto! bien analizado.';
+          feedbackEl.className = 'feedback correct';
+        } else {
+          feedbackEl.innerText = `❌ Incorrecto. La respuesta correcta es: ${q.options[q.correct]}`;
+          feedbackEl.className = 'feedback incorrect';
+        }
+        // desactivar opciones
+        document.querySelectorAll('.option').forEach(opt => {
+          opt.style.pointerEvents = 'none';
+        });
+        nextBtn.disabled = false;
+      }
+
+      function nextQuestion() {
+        if (!answerSubmitted && selectedOption !== null) {
+          evaluateAnswer(); // aseguramos evaluación antes de avanzar si no se ha hecho (por si acaso)
+        }
+        if (currentQuestionIndex < questions.length - 1) {
+          currentQuestionIndex++;
+          selectedOption = null;
+          answerSubmitted = false;
+          renderQuestion();
+        } else if (currentQuestionIndex === questions.length - 1 && answerSubmitted) {
+          // es la última, pero ya se respondió -> marcamos quiz completed
+          quizCompleted = true;
+          currentQuestionIndex++; // para indicar final
+          renderQuestion();
+          nextBtn.disabled = true; // ya no más
+        } else {
+          // no debería pasar
+        }
+      }
+
+      // reset completo
+      function resetQuiz() {
+        currentQuestionIndex = 0;
+        score = 0;
+        selectedOption = null;
+        answerSubmitted = false;
+        quizCompleted = false;
+        scoreSpan.innerText = '0/500';
+        renderQuestion();
+      }
+
+      // Event listeners
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // si no se ha evaluado pero hay opción seleccionada, evaluar
+        if (!answerSubmitted && selectedOption !== null) {
+          evaluateAnswer();
+          // luego nextQuestion avanzará si corresponde
+        }
+        if (answerSubmitted) {
+          nextQuestion();
+        } else {
+          alert('Selecciona una opción antes de continuar.');
+        }
+      });
+
+      // para que el click en opción active el botón de siguiente? No, solo selecciona. El usuario pulsa "siguiente"
+      // También permitir evaluar al hacer click en opción? lo dejamos manual: deben presionar Siguiente.
+      // Pero si alguien selecciona, debe poder evaluar; al dar siguiente llamamos evaluate.
+      // sobreescribimos el click de opciones para simplemente seleccionar.
+      // adicional: permitir que si ya seleccionó, next evalúa
+      optionsEl.addEventListener('click', (e) => {
+        if (e.target.classList.contains('option') && !answerSubmitted) {
+          const idx = parseInt(e.target.dataset.optIndex, 10);
+          selectedOption = idx;
+          document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+          e.target.classList.add('selected');
+        }
+      });
+
+      resetBtn.addEventListener('click', resetQuiz);
+
+      // inicializar
+      resetQuiz();
+    })();
+  </script>
+</body>
+</html>

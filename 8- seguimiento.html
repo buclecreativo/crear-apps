@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Bucle Creativo · Control y seguimiento</title>
+    <!-- Tipografías Google Fonts: mezcla de calidez (Outfit) y solidez (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos suaves -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f7fc;
+            color: #1a2b3e;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #0f2b3c;
+        }
+
+        .wrapper {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            flex: 1;
+        }
+
+        /* Encabezado con personalidad */
+        .main-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid #1e6079;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo-area h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #0f2b3c;
+            line-height: 1.2;
+        }
+
+        .logo-area .sub {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #2b5f7a;
+            font-style: italic;
+            border-left: 3px solid #87b9d0;
+            padding-left: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .theme-badge {
+            background: #cbe0ea;
+            padding: 0.75rem 1.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #144a5e;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            font-size: 1.2rem;
+        }
+
+        .theme-badge i {
+            margin-right: 8px;
+            color: #1e6079;
+        }
+
+        /* Tarjetas y contenedores */
+        .card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 15px 30px -10px rgba(0,50,70,0.1);
+            border: 1px solid #ffffffcc;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.9rem;
+            margin-bottom: 1.5rem;
+            color: #134353;
+            border-left: 8px solid #78b9d2;
+            padding-left: 1.2rem;
+        }
+
+        .section-title i {
+            font-size: 2rem;
+            color: #3f819e;
+        }
+
+        .highlight {
+            background: #e0eff7;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        /* desarrollo de conceptos en grid */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .concept-item {
+            background: #ffffffd9;
+            padding: 1.8rem 1.5rem;
+            border-radius: 28px;
+            border: 1px solid #cde3ed;
+            box-shadow: 0 8px 12px -8px #00000015;
+        }
+
+        .concept-item h3 {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #1c5771;
+            margin-bottom: 1rem;
+            border-bottom: 2px dotted #aaccdd;
+            padding-bottom: 0.5rem;
+        }
+
+        .example-box {
+            background: #f9fcff;
+            border-left: 6px solid #4e98b9;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            margin: 1.5rem 0 0.5rem 0;
+            font-size: 0.98rem;
+            color: #103845;
+            box-shadow: inset 0 2px 6px #d3e4ed;
+        }
+
+        .retiro-reflexivo {
+            background: #ddebf3;
+            border-radius: 30px;
+            padding: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        /* botones y elementos interactivos */
+        .btn {
+            background: #2b5f7a;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-weight: 500;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 12px -6px #1e3f4e;
+            border: 1px solid #ffffff60;
+        }
+
+        .btn i {
+            font-size: 1.2rem;
+        }
+
+        .btn:hover {
+            background: #1e4b62;
+            transform: scale(1.02);
+            box-shadow: 0 12px 18px -8px #0f2b3c;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2b5f7a;
+            color: #1a3f50;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: #e1f0f7;
+        }
+
+        /* estilo juego (test interactivo) */
+        .quiz-container {
+            background: linear-gradient(145deg, #eaf4fa, #ffffff);
+            border-radius: 50px;
+            padding: 2rem 2rem;
+            box-shadow: 0 20px 30px -10px #1b4b5e30;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 1.8rem;
+        }
+
+        .question-num {
+            background: #134353;
+            color: white;
+            padding: 0.5rem 1.3rem;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .score-badge {
+            background: #1f5e7a;
+            color: white;
+            font-size: 1.4rem;
+            padding: 0.3rem 2rem;
+            border-radius: 40px;
+            box-shadow: 0 4px 0 #0e3d4f;
+        }
+
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .answer-option {
+            background: #ffffff;
+            border: 2px solid #b9d7e9;
+            border-radius: 100px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.1s linear;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .answer-option:hover {
+            background: #e3f0f8;
+            border-color: #2b8bb1;
+        }
+
+        .answer-option.selected {
+            background: #c2e2f2;
+            border-color: #136b8e;
+            font-weight: 500;
+        }
+
+        .feedback-msg {
+            margin: 1.2rem 0 1.2rem 0;
+            font-size: 1.3rem;
+            font-weight: 500;
+            padding: 1rem;
+            border-radius: 60px;
+            background: #ffffffd0;
+        }
+
+        .quiz-nav {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* footer estoico */
+        .main-footer {
+            text-align: center;
+            padding: 2rem 1rem 1rem;
+            font-size: 1.1rem;
+            border-top: 2px solid #bfdae9;
+            margin-top: 2rem;
+            color: #1d4e64;
+            font-weight: 300;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .wrapper { padding: 1rem; }
+            .main-header { flex-direction: column; align-items: start; gap: 1rem; }
+            .section-title { font-size: 1.6rem; }
+            .card { padding: 1.5rem; }
+            .quiz-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Encabezado fijo -->
+        <header class="main-header">
+            <div class="logo-area">
+                <h1>Bucle creativo</h1>
+                <div class="sub">Taller diseñado con el corazón de un docente y la mente de un programador.</div>
+            </div>
+            <div class="theme-badge"><i class="fas fa-compass"></i> Tema · Control y seguimiento</div>
+        </header>
+
+        <!-- 1. Título principal motivador -->
+        <div class="card" style="background: #daecf5;">
+            <h1 style="font-size: 2.6rem; line-height: 1.2; color: #09303f;">📊 Medir, ajustar, mejorar: <br>el pulso de una aplicación resiliente</h1>
+            <p style="font-size: 1.4rem; margin-top: 1rem; font-weight: 300;">No basta con soñar una app, hay que construirla con conciencia. Los indicadores son la brújula.</p>
+        </div>
+
+        <!-- 2. Objetivo de aprendizaje -->
+        <section class="card">
+            <h2 class="section-title"><i class="fas fa-bullseye"></i> Objetivo de aprendizaje</h2>
+            <p style="font-size: 1.4rem; background: #ecf5fa; padding: 2rem; border-radius: 36px;"><strong>Verbo:</strong> <em>Construir</em> un sistema de control y seguimiento para un proyecto de software, aplicando KPIs, criterios de calidad, monitoreo de cronograma y evaluación de avances, a fin de tomar decisiones oportunas y colaborativas que garanticen la entrega de valor con integridad técnica y humana.</p>
+        </section>
+
+        <!-- 3. Contextualización narrativa -->
+        <section class="card">
+            <h2 class="section-title"><i class="fas fa-seedling"></i> Contexto · El viaje del QuitumbeApp</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem;">
+                <div style="flex: 2; min-width: 260px;">
+                    <p style="font-size: 1.2rem;">Imagina que junto a tu equipo estás desarrollando <strong class="highlight">“QuitumbeApp”</strong>, una app para reportar incidentes en el transporte público de tu ciudad. Ya superaron la emoción del inicio, pero ahora surgen dudas: ¿vamos bien? ¿la calidad es suficiente? ¿terminaremos a tiempo? <br><br>Como dice Séneca: <em>“No hay viento favorable para quien no sabe a qué puerto se dirige”</em>. Los <strong>indicadores de desempeño</strong> son esas señales en el camino que, lejos de ser frías cifras, te conectan con el propósito y te permiten adaptarte con resiliencia. Vamos a descubrirlas.</p>
+                </div>
+                <div style="flex: 1; background: #b6d6ea; border-radius: 40px; padding: 1.5rem; font-size: 1.1rem;">
+                    <i class="fas fa-bus" style="font-size: 2rem;"></i>
+                    <p><strong>Realidad:</strong> En Ecuador, el transporte público mueve a millones. Una app así necesita control y calidad impecables.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Desarrollo: conceptos detallados con ejemplos -->
+        <section class="card">
+            <h2 class="section-title"><i class="fas fa-code-branch"></i> La caja de herramientas: control y seguimiento</h2>
+            <div class="concept-grid">
+                <!-- KPI -->
+                <div class="concept-item">
+                    <h3><i class="fas fa-chart-line" style="color:#206685;"></i> KPIs</h3>
+                    <p>Indicadores que te dicen si avanzas o naufragas. No es por medir por medir; son preguntas vitales.</p>
+                    <div class="example-box"><i class="fas fa-check-circle" style="color:#1e8154;"></i> <strong>Ejemplo:</strong> “Porcentaje de incidentes reportados con foto” (si es < 70%, algo falla en usabilidad). Otro KPI: “velocidad del equipo” (tareas completadas por semana).</div>
+                </div>
+                <!-- Control de calidad -->
+                <div class="concept-item">
+                    <h3><i class="fas fa-bug"></i> Control de calidad</h3>
+                    <p>No solo cazar errores; es garantizar una experiencia digna. Pruebas unitarias, revisión de código, y también calidad emocional: ¿el equipo está agotado?</p>
+                    <div class="example-box"><i class="fas fa-vial"></i> <strong>Contexto:</strong> En QuitumbeApp, probar que el botón “enviar reporte” funcione en 20 dispositivos diferentes es calidad. Pero también lo es preguntarse si los mensajes de error son amables.</div>
+                </div>
+                <!-- Monitoreo cronograma -->
+                <div class="concept-item">
+                    <h3><i class="fas fa-calendar-alt"></i> Monitoreo cronograma</h3>
+                    <p>Mapa de ruta. No se trata de cumplir fechas a rajatabla, sino de detectar desvíos con tiempo para re-planificar con serenidad.</p>
+                    <div class="example-box"><strong>📅 Ejemplo:</strong> Usar un diagrama de Gantt simple o un tablero Kanban. Si “diseño de base de datos” lleva 5 días más de lo previsto, tal vez necesites ayuda externa o simplificar.</div>
+                </div>
+                <!-- Evaluación de avances -->
+                <div class="concept-item">
+                    <h3><i class="fas fa-clipboard-check"></i> Evaluación de avances</h3>
+                    <p>Revisar lo construido con mirada crítica y constructiva. Demostraciones con usuarios, retrospectivas, verificar que lo hecho realmente resuelve necesidades.</p>
+                    <div class="example-box"><i class="fas fa-users"></i> <strong>Retrospectiva estoica:</strong> ¿Qué aprendimos? ¿Qué podemos soltar? ¿qué duele pero nos fortalece? Cada sprint es un paso de sabiduría colectiva.</div>
+                </div>
+            </div>
+            <!-- Reflexión metacognitiva -->
+            <div class="retiro-reflexivo">
+                <i class="fas fa-brain" style="font-size: 2rem; color: #154c61;"></i>
+                <p style="font-size: 1.2rem;"><strong>Pausa consciente:</strong> Cierra un momento los ojos y piensa en tu proyecto favorito. ¿Cómo sabes si realmente avanza? ¿El simple paso del tiempo es avance? Un KPI bien elegido te da claridad. La calidad es un acto de respeto hacia quien usará lo que creas.</p>
+            </div>
+        </section>
+
+        <!-- 5. El reto final -->
+        <section class="card" style="background: #e1f0f7;">
+            <h2 class="section-title"><i class="fas fa-mountain"></i> Reto final: Tablero de navegación para “QuitumbeApp”</h2>
+            <p style="font-size: 1.3rem;">En equipos de 3, diseñen un <strong>tablero de control físico o digital</strong> (puede ser en una hoja rotafolio o una herramienta online) que contenga:</p>
+            <ul style="margin: 1.5rem 0 1.5rem 2rem; font-size: 1.2rem;">
+                <li><i class="fas fa-check-circle" style="color: #1b8356;"></i> 3 KPIS originales para QuitumbeApp (ej: tiempo medio de respuesta, % de reportes geolocalizados, NPS de usuarios).</li>
+                <li><i class="fas fa-check-circle" style="color: #1b8356;"></i> Una lista de chequeo de calidad con al menos 5 puntos (2 de ellos no funcionales: privacidad, accesibilidad).</li>
+                <li><i class="fas fa-check-circle" style="color: #1b8356;"></i> Un cronograma visual de las próximas 3 semanas (puede ser un calendario con hitos).</li>
+                <li><i class="fas fa-check-circle" style="color: #1b8356;"></i> Una reflexión escrita (1 párrafo) sobre cómo estos elementos ayudan a tomar mejores decisiones en equipo.</li>
+            </ul>
+            <p><strong>Pensamiento crítico:</strong> ¿Qué pasa si un KPI muestra un desempeño “perfecto” pero el equipo está quemado? Incluyan un indicador de bienestar. La técnica es humana.</p>
+            <button class="btn" onclick="alert('¡Excelente, docente. El reto activa la sinergia y resiliencia. Recuerda que cada tabla de seguimiento es un termómetro de propósito.')"><i class="fas fa-lightbulb"></i> Compartir posibles soluciones</button>
+        </section>
+
+        <!-- 6. Evaluación lúdica (juego test interactivo) -->
+        <section class="quiz-container">
+            <h2 class="section-title" style="border-left-color: #e68a4d;"><i class="fas fa-gamepad"></i> Mini desafío: Control y seguimiento · juego rápido</h2>
+            <div id="quizArea">
+                <!-- Se renderiza con JavaScript -->
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                <span id="questionNumber" class="question-num">Pregunta 1 / 5</span>
+                <span id="scoreDisplay" class="score-badge">⭐ 0</span>
+            </div>
+
+            <div id="questionText" style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem;">Cargando...</div>
+
+            <div id="answersContainer" class="answers"></div>
+
+            <div id="feedbackMessage" class="feedback-msg"></div>
+
+            <div class="quiz-nav">
+                <button class="btn-outline btn" id="nextBtn"><i class="fas fa-arrow-right"></i> Siguiente pregunta</button>
+                <button class="btn-outline btn" id="restartQuiz" style="display: none;"><i class="fas fa-undo-alt"></i> Reiniciar</button>
+            </div>
+            <p style="margin-top: 1rem;"><i class="fas fa-heart" style="color: #aa6079;"></i> Responde y aprende — cada error es un peldaño.</p>
+        </section>
+
+        <!-- Pie de página fijo -->
+        <footer class="main-footer">
+            Diseñado por: Edwin Méndez J. · Influencia estoica y visión digital · Bachillerato técnico Ecuador
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // Banco de preguntas (KPI, calidad, cronograma, avances)
+            const questions = [
+                {
+                    question: "¿Qué significa KPI en un proyecto de software?",
+                    options: ["Indicador clave de rendimiento", "Control de procesos internos", "Kernel principal de interfaz", "Plan de iteraciones"],
+                    correct: 0,
+                    explanation: "¡Exacto! KPI = Key Performance Indicator. Te ayuda a saber si el proyecto está saludable."
+                },
+                {
+                    question: "¿Cuál de estos ejemplos sería un control de calidad en una app?",
+                    options: ["Probar que los botones funcionen en varios dispositivos", "Definir cuánto dinero ganará la app", "Revisar el cronograma cada viernes", "Entrevistar a un solo amigo"],
+                    correct: 0,
+                    explanation: "Correcto. El control de calidad implica verificar funcionalidad, usabilidad y robustez. Probar en dispositivos reales es calidad."
+                },
+                {
+                    question: "¿Qué herramienta es útil para monitorear el cronograma?",
+                    options: ["Un diagrama de Gantt", "Un KPI de satisfacción", "Un test de usabilidad", "Un reporte de bugs"],
+                    correct: 0,
+                    explanation: "¡Sí! El diagrama de Gantt (o un Kanban con fechas) muestra tareas en el tiempo y posibles retrasos."
+                },
+                {
+                    question: "Evaluar avances en un proyecto significa:",
+                    options: ["Demostrar lo construido y recibir retroalimentación", "Solo verificar que se gastó el presupuesto", "Entregar sin mirar atrás", "Cumplir fechas sin importar la calidad"],
+                    correct: 0,
+                    explanation: "Así es. Evaluar es inspeccionar con el equipo y usuarios para adaptar el rumbo. Mejora continua."
+                },
+                {
+                    question: "¿Cuál de estas actitudes estoicas se relaciona con el control de un proyecto?",
+                    options: ["Aceptar lo que no podemos cambiar y cambiar lo que sí podemos", "Hacer todo de manera impulsiva", "Evadir los problemas", "Ignorar los datos"],
+                    correct: 0,
+                    explanation: "¡Bien! La serenidad para aceptar desvíos y el coraje para actuar con los KPIs y la calidad. Clave estoica aplicada."
+                }
+            ];
+
+            let currentIndex = 0;
+            let score = 0;
+            let selectedOptionIndex = null;
+            let answered = false;  // para evitar doble respuesta a la misma pregunta
+
+            const questionNumberSpan = document.getElementById('questionNumber');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const questionTextDiv = document.getElementById('questionText');
+            const answersContainer = document.getElementById('answersContainer');
+            const feedbackDiv = document.getElementById('feedbackMessage');
+            const nextBtn = document.getElementById('nextBtn');
+            const restartBtn = document.getElementById('restartQuiz');
+
+            function renderQuestion() {
+                // limpiar estilos previos
+                if (!questions.length) return;
+                const q = questions[currentIndex];
+                questionTextDiv.innerText = q.question;
+                questionNumberSpan.innerText = `Pregunta ${currentIndex+1} / 5`;
+
+                // construir opciones
+                let htmlStr = '';
+                for (let i = 0; i < q.options.length; i++) {
+                    const optionText = q.options[i];
+                    const selectedClass = (selectedOptionIndex === i) ? 'selected' : '';
+                    htmlStr += `<div class="answer-option ${selectedClass}" data-opt-index="${i}"><i class="fas fa-circle-chevron-right"></i> ${optionText}</div>`;
+                }
+                answersContainer.innerHTML = htmlStr;
+
+                // si ya estaba respondida, mostrar feedback, de lo contrario feedback vacío
+                if (answered && selectedOptionIndex !== null) {
+                    const isCorrect = (selectedOptionIndex === q.correct);
+                    feedbackDiv.innerHTML = isCorrect ? `✅ ¡Correcto! ${q.explanation}` : `❌ Incorrecto. ${q.explanation}`;
+                } else {
+                    feedbackDiv.innerHTML = '';
+                }
+
+                // adjuntar eventos a cada opción
+                document.querySelectorAll('.answer-option').forEach(optDiv => {
+                    optDiv.addEventListener('click', (e) => {
+                        if (answered) return;  // ya respondió, no cambiar
+                        const idx = parseInt(optDiv.dataset.optIndex);
+                        if (isNaN(idx)) return;
+
+                        // deseleccionar otros
+                        document.querySelectorAll('.answer-option').forEach(el => el.classList.remove('selected'));
+                        optDiv.classList.add('selected');
+                        selectedOptionIndex = idx;
+                        // automáticamente mostrar si es correcta o no
+                        const isCorrect = (idx === q.correct);
+                        if (isCorrect) {
+                            score++;
+                            scoreDisplay.innerText = `⭐ ${score}`;
+                        }
+                        feedbackDiv.innerHTML = isCorrect ? `✅ ¡Correcto! ${q.explanation}` : `❌ Incorrecto. ${q.explanation}`;
+                        answered = true;
+                    });
+                });
+
+                // manejar botón siguiente
+                if (currentIndex === questions.length - 1) {
+                    nextBtn.innerHTML = '<i class="fas fa-trophy"></i> Ver resultados';
+                } else {
+                    nextBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Siguiente pregunta';
+                }
+
+                // si hemos terminado todas y es la última, mostramos algo especial?
+            }
+
+            // evento siguiente
+            nextBtn.addEventListener('click', () => {
+                // si no ha respondido, no pasa (pero le damos un toque suave)
+                if (!answered && selectedOptionIndex === null) {
+                    feedbackDiv.innerHTML = '💬 Elige una opción para continuar.';
+                    return;
+                }
+
+                if (currentIndex < questions.length - 1) {
+                    // avanzar
+                    currentIndex++;
+                    selectedOptionIndex = null;
+                    answered = false;
+                    renderQuestion();
+                } else {
+                    // es la última: mostrar resumen y opción reiniciar
+                    feedbackDiv.innerHTML = `🎉 Has completado el desafío. Puntaje final: ${score}/${questions.length}. Resiliencia y control, ¡lo lograste!`;
+                    nextBtn.style.display = 'none';
+                    restartBtn.style.display = 'inline-flex';
+                    // deshabilitar clicks en respuestas
+                    document.querySelectorAll('.answer-option').forEach(el => el.style.pointerEvents = 'none');
+                }
+            });
+
+            restartBtn.addEventListener('click', () => {
+                currentIndex = 0;
+                score = 0;
+                selectedOptionIndex = null;
+                answered = false;
+                nextBtn.style.display = 'inline-flex';
+                restartBtn.style.display = 'none';
+                scoreDisplay.innerText = '⭐ 0';
+                document.querySelectorAll('.answer-option').forEach(el => el.style.pointerEvents = 'auto');
+                renderQuestion();
+            });
+
+            // inicial
+            renderQuestion();
+        })();
+    </script>
+    <!-- Nota: no se usa localStorage, es un test liviano -->
+</body>
+</html>

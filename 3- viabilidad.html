@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucle Creativo · Viabilidad de una app</title>
+    <!-- Fuentes modernas y armónicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Fontawesome para iconos suaves (versión free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #f4f7fb;
+            color: #1e293b;
+            line-height: 1.6;
+            padding: 0 1rem 1rem;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(4px);
+            border-radius: 3rem 3rem 2rem 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* Encabezado con identidad */
+        .header-inspirador {
+            background: #0b1e33;  /* azul profundo estoico */
+            padding: 2rem 2.5rem 1.5rem;
+            color: white;
+            border-bottom: 6px solid #f5b041;
+        }
+
+        .header-inspirador h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-inspirador h1 i {
+            color: #f5b041;
+            margin-right: 12px;
+        }
+
+        .header-inspirador .eslogan {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            border-left: 4px solid #f5b041;
+            padding-left: 1.2rem;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* tema */
+        .tema-tag {
+            background: #f5b041;
+            color: #0b1e33;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-block;
+            padding: 0.3rem 2rem 0.3rem 2rem;
+            border-radius: 0 0 20px 20px;
+            letter-spacing: 1px;
+            margin-left: 2rem;
+            box-shadow: 0 8px 12px -6px rgba(0,0,0,0.2);
+        }
+
+        /* contenido principal */
+        .main-pedagogico {
+            padding: 2.5rem 2.5rem 2rem;
+        }
+
+        /* tarjetas suaves para cada bloque */
+        .bloque {
+            background: white;
+            border-radius: 2rem;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 8px 20px -6px rgba(0, 30, 50, 0.08);
+            transition: all 0.2s;
+            border: 1px solid #e9ecf0;
+        }
+
+        .bloque:hover {
+            box-shadow: 0 18px 30px -10px rgba(11, 30, 51, 0.12);
+        }
+
+        h2 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 1.9rem;
+            font-weight: 500;
+            color: #0f2a40;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 i {
+            color: #f5b041;
+            font-size: 2rem;
+            width: 2.2rem;
+        }
+
+        .objetivo {
+            background: #eaf0f9;
+            border-radius: 1.5rem;
+            padding: 1.5rem 2rem;
+            font-size: 1.2rem;
+            border-left: 10px solid #1e4a6b;
+            font-weight: 400;
+            color: #0c2c41;
+            margin: 1.8rem 0 2rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .concepto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .card-concepto {
+            background: #f9fcff;
+            border-radius: 1.5rem;
+            padding: 1.5rem 1.3rem;
+            border: 1px solid #dde7f0;
+            transition: transform 0.1s ease;
+        }
+
+        .card-concepto strong {
+            font-size: 1.35rem;
+            display: block;
+            margin-bottom: 0.8rem;
+            color: #1f4e79;
+        }
+
+        .card-concepto p {
+            color: #2d3f55;
+        }
+
+        .ejemplo {
+            background: #fef6e9;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            border-left: 4px solid #f5b041;
+        }
+
+        /* reto final */
+        .reto-caja {
+            background: linear-gradient(145deg, #1f3a57, #122b40);
+            color: white;
+            border-radius: 2rem;
+            padding: 2rem 2.5rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .reto-caja h3 {
+            font-size: 2rem;
+            font-weight: 500;
+            font-family: "Space Grotesk", sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .reto-caja h3 i {
+            color: #f5b041;
+            margin-right: 12px;
+        }
+
+        .reto-caja p, .reto-caja ul {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        .reto-caja li {
+            margin-left: 1.8rem;
+            padding-left: 0.5rem;
+        }
+
+        /* evaluación lúdica - juego test */
+        .juego-container {
+            background: #2f4d6e;
+            background-image: radial-gradient(circle at 10% 20%, #3f6185, #1d3349);
+            border-radius: 2.5rem;
+            padding: 2rem 2rem 2.5rem;
+            color: #fff;
+            margin-top: 2.5rem;
+            box-shadow: 0 20px 30px -10px #0b1e3350;
+        }
+
+        .juego-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .juego-header h3 {
+            font-size: 2rem;
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 500;
+        }
+
+        .puntuacion {
+            background: #f5b041;
+            color: #0b1e33;
+            font-weight: 700;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            font-size: 1.6rem;
+            box-shadow: 0 0 0 3px white;
+        }
+
+        .pregunta-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 2rem;
+            padding: 2rem;
+            border: 2px solid rgba(255,255,255,0.25);
+        }
+
+        .pregunta-texto {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .opcion-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 60px;
+            padding: 0.9rem 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+            transition: 0.15s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .opcion-btn i {
+            font-size: 1.4rem;
+            width: 1.8rem;
+            color: #f5b041;
+        }
+
+        .opcion-btn:hover {
+            background: #f5b04130;
+            border-color: #f5b041;
+        }
+
+        .opcion-btn.seleccionada {
+            background: #f5b041;
+            border-color: white;
+            color: #0b1e33;
+            font-weight: 600;
+        }
+        .opcion-btn.seleccionada i {
+            color: #0b1e33;
+        }
+
+        .feedback {
+            background: #1f3a57;
+            border-radius: 3rem;
+            padding: 1rem 2rem;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border-left: 12px solid #f5b041;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .feedback i {
+            font-size: 2rem;
+        }
+
+        .boton-siguiente {
+            background: white;
+            border: none;
+            color: #0b1e33;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 0.8rem 2rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 12px -6px #00000050;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .boton-siguiente:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .boton-siguiente:hover:not(:disabled) {
+            background: #f5b041;
+            transform: scale(1.02);
+        }
+
+        /* pie */
+        .footer {
+            background: #0b1e33;
+            color: #acbfd9;
+            padding: 1.5rem 2.5rem;
+            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-top: 3px solid #f5b041;
+        }
+
+        .footer strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .header-inspirador h1 { font-size: 2.2rem; }
+            .opciones { grid-template-columns: 1fr; }
+            .bloque { padding: 1.5rem; }
+            .main-pedagogico { padding: 1.5rem; }
+        }
+        @media (max-width: 480px) {
+            .puntuacion { font-size: 1.2rem; }
+        }
+
+        .icono-pasos {
+            color: #f5b041;
+        }
+        .texto-charlado {
+            font-size: 1.08rem;
+        }
+    </style>
+</head>
+<body>
+<div class="contenedor">
+
+    <!-- Encabezado fijo -->
+    <div class="header-inspirador">
+        <h1><i class="fas fa-code-branch"></i> Bucle creativo</h1>
+        <div class="eslogan">Taller diseñado con el corazón de un docente y la mente de un programador.</div>
+    </div>
+    <div class="tema-tag"><i class="fas fa-clipboard-check"></i> Estudio de viabilidad · 3 fases + reto</div>
+
+    <div class="main-pedagogico">
+        <!-- Título principal motivador (elemento extra) -->
+        <h2 style="font-size: 2.2rem; margin-bottom: 0;"><i class="fas fa-rocket"></i> ¿Una app que cambie el juego? Primero, viabilidad.</h2>
+
+        <!-- Objetivo de aprendizaje -->
+        <div class="objetivo">
+            <i class="fas fa-bullseye" style="color:#f5b041; margin-right: 15px; font-size: 2rem; vertical-align: middle;"></i>
+            <span><strong>Objetivo:</strong> Analizar de forma integral la viabilidad técnica, económica y operativa de una idea de aplicación, mediante el estudio de costes, beneficios, riesgos y toma de decisiones, para desarrollar proyectos tecnológicos sostenibles, éticos y con impacto real en tu entorno.</span>
+        </div>
+
+        <!-- Contextualización (narrativa) -->
+        <div class="bloque">
+            <h2><i class="fas fa-users"></i> Contexto · El superpoder de preguntar “¿se puede?”</h2>
+            <p class="texto-charlado">Imagina que junto a tus amigos diseñan una app para que en tu barrio puedan intercambiar libros y juegos de mesa, reduciendo el desperdicio. Suena genial, pero… ¿tienen los celulares adecuados? ¿costará dinero mantenerla? ¿la gente realmente la usará? Esto no es pesimismo, es <strong>visión estratégica</strong>. Los estoicos llamaban a esto “el arte de distinguir lo que controlas”. Y justo de eso hablamos hoy: poner los pies en la tierra sin perder el sueño creativo. El <strong>estudio de viabilidad</strong> es la brújula que evita naufragios.</p>
+        </div>
+
+        <!-- Desarrollo: conceptos detallados con ejemplos contextualizados Ecuador -->
+        <div class="bloque">
+            <h2><i class="fas fa-microscope"></i> Desarrollo · Radiografía de una idea</h2>
+            <div class="concepto-grid">
+                <div class="card-concepto">
+                    <strong><i class="fas fa-server icono-pasos"></i> Viabilidad técnica</strong>
+                    <p>¿Tenemos la tecnología, el internet, los dispositivos y el conocimiento para construirla? <br> <span class="ejemplo"><i class="fas fa-lightbulb"></i> Ejemplo: Una app de realidad aumentada para el museo de Guayaquil: ¿los móviles de los visitantes la soportan? ¿sabemos programar eso?</span></p>
+                </div>
+                <div class="card-concepto">
+                    <strong><i class="fas fa-coins icono-pasos"></i> Viabilidad económica</strong>
+                    <p>¿Cuánto cuesta desarrollarla y mantenerla? ¿hay ingresos (públicos, anuncios, suscripción)?<br> <span class="ejemplo"><i class="fas fa-lightbulb"></i> Ejemplo: Financiar la app con un crowdfunding en la comunidad o con pequeños sponsors locales.</span></p>
+                </div>
+                <div class="card-concepto">
+                    <strong><i class="fas fa-hand-peace icono-pasos"></i> Viabilidad operativa</strong>
+                    <p>¿La gente y las organizaciones involucradas aceptarán el cambio? ¿podemos gestionarla día a día?<br> <span class="ejemplo"><i class="fas fa-lightbulb"></i> Ejemplo: ¿los profes se animarían a usar la app para prestar libros? ¿habría un encargado?</span></p>
+                </div>
+                <div class="card-concepto">
+                    <strong><i class="fas fa-chart-line icono-pasos"></i> Análisis costo-beneficio</strong>
+                    <p>Comparar lo que invertimos (tiempo, dinero, esfuerzo) con lo que ganamos (aprendizaje, comunidad, ahorro).<br> <span class="ejemplo"><i class="fas fa-lightbulb"></i> Ejemplo: crear la app cuesta 200 horas de trabajo, pero beneficia a 500 familias: el beneficio social es enorme.</span></p>
+                </div>
+                <div class="card-concepto">
+                    <strong><i class="fas fa-exclamation-triangle icono-pasos"></i> Evaluación de riesgos</strong>
+                    <p>¿Qué podría salir mal? (falta de interés, problemas técnicos, costos ocultos) y cómo prevenirlo.<br> <span class="ejemplo"><i class="fas fa-lightbulb"></i> Ejemplo: que los usuarios no entiendan la app. Plan: hacer talleres de inducción en el colegio.</span></p>
+                </div>
+            </div>
+            <p style="margin-top:1.5rem; background: #dff0fa; padding:1rem 2rem; border-radius:40px;"><i class="fas fa-comment-dots" style="color:#1f4e79;"></i> ¿Notas cómo cada viabilidad se conecta con las demás? La técnica afecta los costos, y la operativa puede minimizar riesgos. Todo es un sistema.</p>
+        </div>
+
+        <!-- El reto final -->
+        <div class="reto-caja">
+            <h3><i class="fas fa-crown"></i> Reto final: Barrio conectado</h3>
+            <p><strong>Escenario:</strong> Tu equipo (3-4 personas) quiere desarrollar una app para gestionar las canchas deportivas de tu parroquia. Los vecinos podrían reservar horarios y ver disponibilidad. Tu misión: realizar un <strong>estudio de viabilidad exprés</strong> (una ficha creativa) que analice:</p>
+            <ul style="margin-top: 1rem; list-style-type: none;">
+                <li><i class="fas fa-check-circle" style="color:#f5b041;"></i> 1. Viabilidad técnica: ¿Qué necesitan? (hardware, conexión, habilidades)</li>
+                <li><i class="fas fa-check-circle" style="color:#f5b041;"></i> 2. Viabilidad económica: Costes (servidor, publicidad) y posibles ingresos (anuncios de tiendas locales).</li>
+                <li><i class="fas fa-check-circle" style="color:#f5b041;"></i> 3. Viabilidad operativa: ¿Quién gestionaría reservas? ¿Cómo capacitar a los usuarios?</li>
+                <li><i class="fas fa-check-circle" style="color:#f5b041;"></i> 4. Análisis costo-beneficio: ¿Vale la pena? (argumento)</li>
+                <li><i class="fas fa-check-circle" style="color:#f5b041;"></i> 5. Un riesgo clave y cómo reducirlo.</li>
+            </ul>
+            <p style="margin-top:1.5rem"><i class="fas fa-lightbulb"></i> Presenten sus conclusiones en una infografía o afiche digital. ¡Lo importante es tomar decisiones con conciencia!</p>
+        </div>
+
+        <!-- Evaluación lúdica: juego test interactivo (JavaScript) -->
+        <div class="juego-container" id="juego">
+            <div class="juego-header">
+                <h3><i class="fas fa-gamepad"></i> Mini desafío: ¿qué recuerdas?</h3>
+                <div class="puntuacion" id="puntuacion">0/5</div>
+            </div>
+
+            <div class="pregunta-card" id="preguntaCard">
+                <div class="pregunta-texto" id="preguntaTexto">Cargando...</div>
+                <div class="opciones" id="opcionesContainer"></div>
+                <div class="feedback" id="feedbackArea"><i class="fas fa-info-circle"></i> Elige una opción y descubre si vas bien</div>
+                <button class="boton-siguiente" id="btnSiguiente" disabled><i class="fas fa-arrow-right"></i> Siguiente pregunta</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página fijo -->
+    <div class="footer">
+        <span><i class="fas fa-flask"></i> Diseñado por: Edwin Méndez J.</span>
+        <span><i class="fas fa-braille"></i> Estoicidad + sinergia · 2025</span>
+    </div>
+</div>
+
+<!-- JavaScript (ES6+) para el juego tipo test -->
+<script>
+    (function() {
+        // Banco de preguntas (5) sobre viabilidad, contexto Ecuador, tono cercano.
+        const preguntas = [
+            {
+                texto: "1. En la viabilidad técnica nos preguntamos:",
+                opciones: [
+                    "A. ¿La gente aceptará la app?",
+                    "B. ¿Tenemos la tecnología y habilidades para construirla?",
+                    "C. ¿Cuánto dinero ganaremos?",
+                    "D. ¿Qué puede salir mal?"
+                ],
+                correcta: 1, // índice 1 (B)
+                retro: "¡Correcto! La técnica se enfoca en recursos tecnológicos y conocimientos. ¿Lo habías visto así?"
+            },
+            {
+                texto: "2. Si analizamos si los profesores y estudiantes usarían una app de biblioteca escolar, estamos evaluando:",
+                opciones: [
+                    "A. Viabilidad económica",
+                    "B. Análisis costo-beneficio",
+                    "C. Viabilidad operativa",
+                    "D. Evaluación de riesgos"
+                ],
+                correcta: 2, // C
+                retro: "¡Así es! La viabilidad operativa indaga si las personas pueden y quieren adoptar el sistema."
+            },
+            {
+                texto: "3. En el análisis costo-beneficio de una app para canchas, lo fundamental es:",
+                opciones: [
+                    "A. Comparar inversión (tiempo/dinero) con las ganancias (sociales/económicas)",
+                    "B. Solo ver los costos de programación",
+                    "C. Ver si hay electricidad",
+                    "D. Hacer una encuesta en TikTok"
+                ],
+                correcta: 0, // A
+                retro: "¡Exacto! Se compara todo lo que invertimos versus lo que obtenemos, no solo dinero."
+            },
+            {
+                texto: "4. Identificar que 'el internet en el sector puede fallar' y planear una solución es parte de:",
+                opciones: [
+                    "A. Viabilidad técnica",
+                    "B. Evaluación de riesgos",
+                    "C. Viabilidad económica",
+                    "D. Lluvia de ideas"
+                ],
+                correcta: 1, // B
+                retro: "¡Sí! Evaluación de riesgos detecta problemas potenciales y propone acciones para mitigarlos."
+            },
+            {
+                texto: "5. Si una app requiere servidores en la nube que cuestan $20 al mes, esto impacta directamente en:",
+                opciones: [
+                    "A. Viabilidad operativa",
+                    "B. Viabilidad técnica",
+                    "C. Viabilidad económica",
+                    "D. Evaluación de riesgos"
+                ],
+                correcta: 2, // C
+                retro: "¡Claro! Es un costo recurrente, por tanto es parte de la viabilidad económica."
+            }
+        ];
+
+        let indiceActual = 0;
+        let puntaje = 0;
+        let respuestaSeleccionada = false; // para evitar doble click
+        let opcionElegidaIndex = null;
+
+        // elementos DOM
+        const puntuacionSpan = document.getElementById('puntuacion');
+        const preguntaTexto = document.getElementById('preguntaTexto');
+        const opcionesDiv = document.getElementById('opcionesContainer');
+        const feedbackDiv = document.getElementById('feedbackArea');
+        const btnSiguiente = document.getElementById('btnSiguiente');
+
+        function actualizarPuntuacion() {
+            puntuacionSpan.innerText = `${puntaje}/${preguntas.length}`;
+        }
+
+        function cargarPregunta(index) {
+            respuestaSeleccionada = false;
+            opcionElegidaIndex = null;
+            btnSiguiente.disabled = true;
+
+            const pregunta = preguntas[index];
+            preguntaTexto.innerText = pregunta.texto;
+
+            // limpiar y crear opciones
+            opcionesDiv.innerHTML = '';
+            pregunta.opciones.forEach((opcion, idx) => {
+                const btn = document.createElement('div');
+                btn.className = 'opcion-btn';
+                btn.setAttribute('data-index', idx);
+                btn.innerHTML = `<i class="fas fa-circle"></i> ${opcion}`;
+                btn.addEventListener('click', () => manejarSeleccion(idx, btn));
+                opcionesDiv.appendChild(btn);
+            });
+
+            // reset feedback
+            feedbackDiv.innerHTML = '<i class="fas fa-info-circle"></i> Elige una opción y descubre si vas bien';
+            feedbackDiv.style.borderLeftColor = '#f5b041';
+        }
+
+        function manejarSeleccion(idx, btnElemento) {
+            if (respuestaSeleccionada) {
+                // ya respondió, no permitir cambios
+                return;
+            }
+
+            // quitar clase 'seleccionada' de todos
+            document.querySelectorAll('.opcion-btn').forEach(btn => btn.classList.remove('seleccionada'));
+            btnElemento.classList.add('seleccionada');
+            opcionElegidaIndex = idx;
+        }
+
+        // Verificar respuesta (se puede llamar al hacer click en comprobar, pero diseñamos que se valida al marcar? Mejor al marcar confirmamos automático? Pero damos feedback inmediato y bloqueamos.
+        // añadimos listener para que al hacer click en opcion se valide (inmediato)
+        function comprobarRespuesta() {
+            if (opcionElegidaIndex === null || respuestaSeleccionada) return;
+
+            const pregunta = preguntas[indiceActual];
+            const esCorrecta = (opcionElegidaIndex === pregunta.correcta);
+            if (esCorrecta) {
+                puntaje++;
+                feedbackDiv.innerHTML = `<i class="fas fa-check-circle" style="color:#a5d6a5;"></i> ✅ ¡Perfecto! ${pregunta.retro}`;
+                feedbackDiv.style.borderLeftColor = '#4caf50';
+            } else {
+                feedbackDiv.innerHTML = `<i class="fas fa-times-circle" style="color:#f8aa9e;"></i> ❌ No es correcto. ${pregunta.retro} (la opción correcta era "${pregunta.opciones[pregunta.correcta]}")`;
+                feedbackDiv.style.borderLeftColor = '#f56c6c';
+            }
+
+            respuestaSeleccionada = true;
+            btnSiguiente.disabled = false;
+            actualizarPuntuacion();
+        }
+
+        // Modificamos el evento de opcion para llamar a comprobar después de seleccionar
+        function adjuntarListenersOpciones() {
+            document.querySelectorAll('.opcion-btn').forEach(btn => {
+                btn.removeEventListener('click', manejadorClickOpcion);
+                btn.addEventListener('click', manejadorClickOpcion);
+            });
+        }
+
+        function manejadorClickOpcion(e) {
+            // El elemento puede ser el div o el i, mejor obtener el btn principal
+            const btn = e.currentTarget; 
+            const idx = parseInt(btn.getAttribute('data-index'), 10);
+            if (respuestaSeleccionada) return; // no puede cambiar
+
+            // quitar seleccionados
+            document.querySelectorAll('.opcion-btn').forEach(b => b.classList.remove('seleccionada'));
+            btn.classList.add('seleccionada');
+            opcionElegidaIndex = idx;
+
+            // comprobar de inmediato
+            comprobarRespuesta();
+        }
+
+        // Siguiente pregunta
+        function siguientePregunta() {
+            if (!respuestaSeleccionada) return; // no debería pasar por el disabled
+
+            if (indiceActual + 1 < preguntas.length) {
+                indiceActual++;
+                cargarPregunta(indiceActual);
+            } else {
+                // fin del juego
+                preguntaTexto.innerText = "🎉 ¡Completaste el desafío! Revisa tu puntuación.";
+                opcionesDiv.innerHTML = '';
+                feedbackDiv.innerHTML = `<i class="fas fa-star"></i> Has respondido todas. Puedes reiniciar la página para jugar de nuevo.`;
+                btnSiguiente.disabled = true;
+                // no incrementamos más
+            }
+        }
+
+        btnSiguiente.addEventListener('click', siguientePregunta);
+
+        // Inicializar
+        function initJuego() {
+            indiceActual = 0;
+            puntaje = 0;
+            respuestaSeleccionada = false;
+            actualizarPuntuacion();
+            cargarPregunta(0);
+        }
+
+        initJuego();
+
+        // Pequeño ajuste: para que cada vez que se cargue pregunta, los listeners estén correctos (la función cargarPregunta crea nuevos botones, y luego el evento se asigna mediante el manejador único)
+        // pero sobreescribimos: después de cargarPregunta, llamamos adjuntar
+        const originalCargar = cargarPregunta;
+        cargarPregunta = function(idx) {
+            originalCargar(idx);
+            document.querySelectorAll('.opcion-btn').forEach(btn => {
+                btn.removeEventListener('click', manejadorClickOpcion);
+                btn.addEventListener('click', manejadorClickOpcion);
+            });
+        }.bind(this);
+
+        // reinvocar inicialización con la función sobreescrita
+        initJuego = function() {
+            indiceActual = 0;
+            puntaje = 0;
+            respuestaSeleccionada = false;
+            actualizarPuntuacion();
+            cargarPregunta(0);
+        };
+        initJuego();
+    })();
+</script>
+<!-- pequeño fix de contexto para asegurar que el juego arranque bien -->
+</body>
+</html>

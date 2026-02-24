@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucle creativo · gestión de riesgos</title>
+  <!-- Fonts & estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f4f7fb;
+      font-family: "Inter", system-ui, -apple-system, sans-serif;
+      color: #1e293b;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* contenedor principal */
+    .wrapper {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+      flex: 1;
+    }
+
+    /* header */
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid rgba(0, 100, 148, 0.15);
+      padding-bottom: 1.25rem;
+    }
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .logo-area h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 2.2rem;
+      background: linear-gradient(145deg, #0f2b3d, #1b5e7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .subtitulo-corazon {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #2c5f7b;
+      background: #e4f0f8;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      margin-top: 0.25rem;
+      display: inline-block;
+      border: 1px solid #c5dceb;
+    }
+    .tema-tag {
+      background: #1d3f50;
+      color: white;
+      padding: 0.3rem 1.2rem;
+      border-radius: 30px;
+      font-weight: 500;
+      font-size: 1rem;
+      margin-left: auto;
+      box-shadow: 0 4px 8px rgba(0,40,50,0.1);
+    }
+
+    /* objetivo + contextualización elegante */
+    .objetivo-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem 2.3rem;
+      margin: 2rem 0 2.5rem;
+      box-shadow: 0 16px 40px -12px rgba(22, 62, 85, 0.2);
+      border: 1px solid rgba(65, 143, 184, 0.2);
+    }
+    .objetivo-block h3, .contexto-block h3 {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #2e7a92;
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+    .objetivo-block p {
+      font-size: 1.3rem;
+      font-weight: 350;
+      line-height: 1.5;
+      color: #0a2c3b;
+    }
+    .contexto-block p {
+      font-size: 1.15rem;
+      color: #264a5c;
+      background: #eef9ff;
+      padding: 1.5rem 2rem;
+      border-radius: 24px;
+      border-left: 6px solid #389bb9;
+      margin-top: 0.5rem;
+    }
+
+    /* desarrollo conceptos grid */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      margin: 2.5rem 0 2rem;
+    }
+    .concept-card {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      transition: 0.2s ease;
+      border: 1px solid rgba(142, 190, 215, 0.3);
+      box-shadow: 0 6px 12px rgba(0, 30, 40, 0.03);
+    }
+    .concept-card:hover {
+      transform: translateY(-4px);
+      border-color: #4ea5c7;
+      box-shadow: 0 18px 28px -10px #a3c9dd;
+    }
+    .concept-card h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      color: #145369;
+      margin-bottom: 1rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+    .badge {
+      background: #d2ebf5;
+      color: #0c465e;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.3rem 0.9rem;
+      border-radius: 30px;
+      display: inline-block;
+      margin-bottom: 0.9rem;
+    }
+    .concept-card p {
+      color: #254e61;
+      margin-bottom: 0.8rem;
+    }
+    .ejemplo {
+      background: #eaf3f9;
+      border-radius: 1rem;
+      padding: 1rem;
+      font-style: italic;
+      margin-top: 1rem;
+      border-left: 4px solid #387e9b;
+      font-size: 0.95rem;
+    }
+
+    /* reto final (bloque inspirador) */
+    .reto-section {
+      background: linear-gradient(125deg, #182f3b 0%, #1d485e 100%);
+      color: white;
+      border-radius: 2.5rem;
+      padding: 2.7rem 3rem;
+      margin: 2.8rem 0 2.8rem;
+      box-shadow: 0 30px 30px -15px #123845;
+    }
+    .reto-section h2 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      font-family: "Space Grotesk", sans-serif;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    .reto-section p {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      max-width: 900px;
+    }
+    .reto-caja {
+      background: rgba(255,255,255,0.08);
+      border-radius: 2rem;
+      padding: 1.8rem;
+      backdrop-filter: blur(4px);
+      border: 1px solid #79bdd6;
+      margin-top: 1.5rem;
+    }
+    .reto-caja strong {
+      color: #ffeba0;
+      font-weight: 600;
+    }
+
+    /* zona lúdica (quiz interactivo) */
+    .quiz-wrapper {
+      background: #ddecf5;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      margin: 3rem 0 2rem;
+      border: 2px dashed #2580a3;
+    }
+    .quiz-header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .quiz-header h2 {
+      font-size: 2.2rem;
+      font-weight: 520;
+      color: #103d4e;
+      font-family: "Space Grotesk", sans-serif;
+    }
+    .score-badge {
+      background: #153e4e;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      box-shadow: 0 4px 0 #0c2d3a;
+    }
+    .pregunta-container {
+      background: white;
+      border-radius: 2rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .pregunta-texto {
+      font-size: 1.7rem;
+      font-weight: 440;
+      color: #0e394b;
+      margin-bottom: 1.8rem;
+    }
+    .opciones {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .opcion {
+      background: #eef4f9;
+      border-radius: 50px;
+      padding: 0.9rem 1.8rem;
+      font-size: 1.2rem;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: 0.15s;
+      color: #153845;
+      font-weight: 450;
+    }
+    .opcion:hover {
+      background: #d1e2f0;
+      border-color: #3487a5;
+    }
+    .opcion.selected {
+      background: #b3dff5;
+      border-color: #166f8f;
+      font-weight: 600;
+    }
+    .feedback {
+      font-size: 1.3rem;
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      margin: 0.5rem 0 1.2rem;
+      background: #fefefe;
+      box-shadow: 0 2px 8px #cadde9;
+    }
+    .feedback.correcto { background: #d9f0df; color: #1d5f3e; border-left: 12px solid #2e9a6b; }
+    .feedback.incorrecto { background: #ffe7e7; color: #a13d3d; border-left: 12px solid #d46b6b; }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      background: white;
+      border: 2px solid #16657c;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #16657c;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .btn-primary {
+      background: #176e89;
+      color: white;
+      border: none;
+    }
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .btn:hover {
+      background: #e1f0f7;
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: #0e556d;
+    }
+
+    /* pie de página */
+    .main-footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1.8rem 0.5rem;
+      border-top: 2px solid #bad2e0;
+      color: #2c5a70;
+      font-size: 1.1rem;
+      font-weight: 350;
+    }
+    .main-footer strong {
+      font-weight: 600;
+      color: #103f53;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      .wrapper { padding: 1rem; }
+      .logo-area h1 { font-size: 1.8rem; }
+      .objetivo-card { padding: 1.5rem; }
+      .reto-section { padding: 2rem 1.5rem; }
+      .pregunta-texto { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- Encabezado fijo -->
+  <header class="main-header">
+    <div class="logo-area">
+      <h1>Bucle creativo</h1>
+      <span class="subtitulo-corazon">Taller diseñado con el corazón de un docente y la mente de un programador.</span>
+    </div>
+    <div class="tema-tag">⚡ Gestión de riesgos · 6</div>
+  </header>
+
+  <!-- 1. Título principal (inspirador) ya implícito en el header, pero añadimos un eslogan fuerte -->
+  <div style="margin: 1rem 0 0.5rem;">
+    <h2 style="font-size: 2.5rem; font-weight: 400; color: #143e52;">construir con <span style="background: #fff4d6; padding:0 1rem;">resiliencia</span> · anticipar lo inesperado</h2>
+  </div>
+
+  <!-- 2. Objetivo de aprendizaje (un párrafo) y 3. Contextualización integrados -->
+  <div class="objetivo-card">
+    <div class="objetivo-block">
+      <h3>🧭 objetivo de aprendizaje</h3>
+      <p>Diseñar y aplicar estrategias de gestión de riesgos en proyectos digitales, identificando amenazas, analizando su probabilidad e impacto, y creando planes de mitigación y contingencia, para desarrollar aplicaciones robustas con conciencia ética, trabajo en equipo y adaptabilidad al cambio.</p>
+    </div>
+    <div class="contexto-block" style="margin-top: 2rem;">
+      <h3>📡 contexto que late</h3>
+      <p>Imagina que tú y tu equipo lanzan “EcoBarrio”, una app para conectar vecinos y reciclar. Semanas antes del estreno, un miembro se enferma, la base de datos se corrompe y llueve el día del evento comunitario. ¿Cancelar? No. Un equipo estoico y sinérgico anticipa los riesgos. Esto no es pesimismo, es sabiduría práctica. La gestión de riesgos te da el poder de bailar con la incertidumbre.</p>
+    </div>
+  </div>
+
+  <!-- 4. Desarrollo de la actividad (conceptos detallados) -->
+  <h3 style="font-size: 1.8rem; font-weight: 450; margin-bottom: 1rem;">🧩 núcleo técnico · cuatro movimientos</h3>
+  <div class="concept-grid">
+    <!-- identificación -->
+    <div class="concept-card">
+      <span class="badge">1 · identificación</span>
+      <h3>🔍 ¿qué puede fallar?</h3>
+      <p>Como exploradores, listamos riesgos técnicos, humanos y externos. Tormenta de ideas con el equipo, entrevistas, checklists.</p>
+      <div class="ejemplo">📱 En EcoBarrio: “que el servidor no soporte 500 usuarios simultáneos” o “que el diseñador renuncie”.</div>
+    </div>
+    <!-- análisis impacto/probabilidad -->
+    <div class="concept-card">
+      <span class="badge">2 · análisis</span>
+      <h3>📊 impacto + probabilidad</h3>
+      <p>Valoramos cada riesgo (alto/medio/bajo). Matriz de probabilidad vs. impacto: priorizamos lo crítico.</p>
+      <div class="ejemplo">⚠️ “Caída del server” → impacto altísimo, probabilidad media → semáforo rojo. Prioridad máxima.</div>
+    </div>
+    <!-- plan mitigación -->
+    <div class="concept-card">
+      <span class="badge">3 · mitigación</span>
+      <h3>🛡️ reducir el riesgo</h3>
+      <p>Acciones preventivas para minimizar probabilidad o impacto. No esperamos, actuamos antes.</p>
+      <div class="ejemplo">🧪 Hacer pruebas de carga, contratar servidor escalable, documentar conocimiento cruzado.</div>
+    </div>
+    <!-- plan contingencia -->
+    <div class="concept-card">
+      <span class="badge">4 · contingencia</span>
+      <h3>🚨 si ocurre…</h3>
+      <p>Plan de respuesta cuando el riesgo se materializa. Pasos claros, responsables, comunicación.</p>
+      <div class="ejemplo">🔁 Servidor caído → activar respaldo en 5 min, notificar en redes, equipo de guardia.</div>
+    </div>
+  </div>
+
+  <!-- 5. El reto final (actividad integradora) -->
+  <section class="reto-section">
+    <h2>⚡ reto final · opera tu app soñada</h2>
+    <p>En grupos de 3, imaginad que desarrolláis una app para estudiantes: "Estudia+".</p>
+    <div class="reto-caja">
+      <strong>📋 escenario:</strong> quedan 3 semanas para el lanzamiento en tu colegio. <br>
+      <strong>🧠 tarea:</strong> identificar al menos 6 riesgos concretos (tecnológicos, de equipo, externos). Evaluar su impacto y probabilidad. Diseñar un plan de mitigación para los 3 más críticos y un plan de contingencia para el peor escenario. Entregar una matriz visual (puede ser dibujada) y explicarla en 5 minutos. Valoraremos creatividad, trabajo en equipo y mirada estoica (aceptar lo que no controlas, actuar en lo que sí).  
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 1.2rem;">💬 el propósito: que vuestro proyecto no naufrague, sino que navegue.</p>
+  </section>
+
+  <!-- 6. Evaluación lúdica: juego test interactivo (5 preguntas) -->
+  <div class="quiz-wrapper">
+    <div class="quiz-header">
+      <h2>🧪 game · guardianas del riesgo</h2>
+      <div class="score-badge" id="scoreDisplay">0/5</div>
+    </div>
+
+    <!-- contenedor pregunta dinámica -->
+    <div id="quizArea">
+      <div class="pregunta-container">
+        <div class="pregunta-texto" id="preguntaActual">Cargando...</div>
+        <div class="opciones" id="opcionesContainer"></div>
+        <div class="feedback" id="feedbackMensaje"></div>
+        <div class="btn-group">
+          <button class="btn" id="responderBtn" disabled>✅ responder</button>
+          <button class="btn btn-primary" id="siguienteBtn" disabled>→ siguiente pregunta</button>
+        </div>
+      </div>
+    </div>
+    <p style="margin-top: 0.5rem; color: #236f8b;">se honesto, aprende del error, crece 💪</p>
+  </div>
+
+  <!-- Pie de página fijo -->
+  <footer class="main-footer">
+    Diseñado por: <strong>Edwin Méndez J.</strong> · con la serenidad estoica y la sinergia de un equipo consciente.
+  </footer>
+</div>
+
+<!-- JavaScript (ES6+) juego interactivo -->
+<script>
+  (function() {
+    // banco de preguntas sobre gestión de riesgos
+    const preguntas = [
+      {
+        pregunta: "En la fase de identificación de riesgos, ¿cuál es una actividad clave?",
+        opciones: [
+          "Planificar la respuesta si el riesgo ocurre",
+          "Listar posibles amenazas (tormenta de ideas, checklists)",
+          "Asignar un responsable para cada riesgo",
+          "Evaluar el impacto económico"
+        ],
+        correcta: 1, // índice 1
+        explicacion: "Identificar es generar una lista amplia de lo que podría salir mal. ¡Primero hay que verlo!"
+      },
+      {
+        pregunta: "Si un riesgo tiene probabilidad 'alta' e impacto 'catastrófico', se debe:",
+        opciones: [
+          "Ignorarlo, porque es muy improbable",
+          "Ponerlo en la matriz como prioridad crítica y actuar ya",
+          "Dejarlo para la contingencia únicamente",
+          "Transferirlo al cliente"
+        ],
+        correcta: 1,
+        explicacion: "Correcto: riesgo crítico exige medidas de mitigación inmediatas."
+      },
+      {
+        pregunta: "¿Qué diferencia hay entre plan de mitigación y plan de contingencia?",
+        opciones: [
+          "Son lo mismo, solo cambia el nombre",
+          "Mitigación reduce probabilidad/impacto (antes); contingencia responde (después)",
+          "Contingencia es más barata que mitigación",
+          "Mitigación solo se usa en apps móviles"
+        ],
+        correcta: 1,
+        explicacion: "Mitigación: preventivo. Contingencia: reactivo, cuando el riesgo ya es real."
+      },
+      {
+        pregunta: "En un equipo de desarrollo, la 'sinergia estoica' aplicada a riesgos significa:",
+        opciones: [
+          "Cada persona trabaja sola para ser más fuerte",
+          "Colaboración activa + aceptación serena de lo que no depende de nosotros",
+          "Evitar cualquier reunión para no perder tiempo",
+          "Contratar a un experto en estoicismo"
+        ],
+        correcta: 1,
+        explicacion: "Combinar fortaleza del equipo (sinergia) con ecuanimidad (estoicismo) para gestionar lo imprevisto."
+      },
+      {
+        pregunta: "Ejemplo de plan de contingencia para una app educativa:",
+        opciones: [
+          "Hacer backups diarios (eso es mitigación)",
+          "Si el servidor falla, activar servidor espejo en menos de 10 min",
+          "Comprar un dominio más barato",
+          "Reunirse para pensar en riesgos"
+        ],
+        correcta: 1,
+        explicacion: "Correcto: es una respuesta operativa una vez que el riesgo (caída) ya ocurrió."
+      }
+    ];
+
+    // estado del juego
+    let indiceActual = 0;
+    let puntaje = 0;
+    let respuestaSeleccionada = null; // indice de opción seleccionada (0-3)
+    let yaRespondio = false; // si ya se respondió la actual (bloquea cambios)
+    let totalPreguntas = preguntas.length;
+
+    // elementos DOM
+    const preguntaEl = document.getElementById('preguntaActual');
+    const opcionesDiv = document.getElementById('opcionesContainer');
+    const feedbackEl = document.getElementById('feedbackMensaje');
+    const scoreSpan = document.getElementById('scoreDisplay');
+    const responderBtn = document.getElementById('responderBtn');
+    const siguienteBtn = document.getElementById('siguienteBtn');
+
+    function actualizarScoreUI() {
+      scoreSpan.innerText = `${puntaje}/${totalPreguntas}`;
+    }
+
+    // renderiza pregunta actual
+    function cargarPregunta() {
+      const q = preguntas[indiceActual];
+      preguntaEl.innerText = q.pregunta;
+      opcionesDiv.innerHTML = '';
+      respuestaSeleccionada = null;
+      yaRespondio = false;
+      feedbackEl.innerHTML = ''; // limpiar feedback
+      feedbackEl.className = 'feedback';
+      responderBtn.disabled = true;
+      siguienteBtn.disabled = true; // solo se activa tras responder
+
+      q.opciones.forEach((opcionTexto, idx) => {
+        const opcionDiv = document.createElement('div');
+        opcionDiv.className = 'opcion';
+        opcionDiv.dataset.index = idx;
+        opcionDiv.innerText = opcionTexto;
+        opcionDiv.addEventListener('click', () => {
+          if (yaRespondio) return; // no cambiar después de responder
+          // quitar selected de todas
+          document.querySelectorAll('.opcion').forEach(opt => opt.classList.remove('selected'));
+          opcionDiv.classList.add('selected');
+          respuestaSeleccionada = idx;
+          responderBtn.disabled = false; // habilitar responder
+        });
+        opcionesDiv.appendChild(opcionDiv);
+      });
+    }
+
+    // manejar respuesta
+    function responderPregunta() {
+      if (yaRespondio || respuestaSeleccionada === null) return;
+
+      const q = preguntas[indiceActual];
+      const esCorrecta = (respuestaSeleccionada === q.correcta);
+      yaRespondio = true;
+      responderBtn.disabled = true;
+
+      // actualizar puntaje
+      if (esCorrecta) {
+        puntaje++;
+        feedbackEl.innerText = `✅ ¡Correcto! ${q.explicacion}`;
+        feedbackEl.className = 'feedback correcto';
+      } else {
+        feedbackEl.innerText = `❌ Incorrecto. La respuesta correcta es: "${q.opciones[q.correcta]}". ${q.explicacion}`;
+        feedbackEl.className = 'feedback incorrecto';
+      }
+
+      // deshabilitar clicks en opciones (visual)
+      document.querySelectorAll('.opcion').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+
+      // marcar visualmente la correcta (opcional, para aprender)
+      document.querySelectorAll('.opcion').forEach((opt, idx) => {
+        if (idx === q.correcta) {
+          opt.style.background = '#c8e6d9'; // luz verde tenue
+          opt.style.borderColor = '#248f6d';
+        }
+      });
+
+      actualizarScoreUI();
+      // habilitar botón siguiente
+      siguienteBtn.disabled = false;
+    }
+
+    // avanzar a siguiente pregunta
+    function siguientePregunta() {
+      if (indiceActual + 1 < totalPreguntas) {
+        indiceActual++;
+        cargarPregunta();
+      } else {
+        // fin del juego
+        preguntaEl.innerText = "🎉 ¡Has completado el desafío de riesgos!";
+        opcionesDiv.innerHTML = '';
+        feedbackEl.innerHTML = `Puntaje final: ${puntaje}/${totalPreguntas}. Sigue aprendiendo a bailar con la incertidumbre.`;
+        feedbackEl.className = 'feedback correcto';
+        responderBtn.disabled = true;
+        siguienteBtn.disabled = true; // ya no hay más
+        // también podemos mantener el puntaje visible
+      }
+    }
+
+    // event listeners
+    responderBtn.addEventListener('click', responderPregunta);
+    siguienteBtn.addEventListener('click', siguientePregunta);
+
+    // iniciar juego
+    cargarPregunta();
+    actualizarScoreUI();
+  })();
+</script>
+</body>
+</html>

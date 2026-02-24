@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucle creativo · Plan de comunicación · app</title>
+  <!-- Fuentes modernas y armónicas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome para iconos sutiles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f6f9fc;
+      font-family: "Inter", sans-serif;
+      color: #1e2b3c;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* contenedor principal */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem;
+    }
+
+    /* Encabezado fijo (texto exacto) */
+    .site-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      border-bottom: 2px solid rgba(0, 112, 150, 0.2);
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+    }
+    .site-header h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2.5rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #0b4b5e, #1d7a8c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+    }
+    .site-header .tagline {
+      font-size: 1.1rem;
+      color: #2c4c5e;
+      background: #e0f0f5;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      margin-top: 0.3rem;
+      font-weight: 400;
+      display: inline-block;
+    }
+    .site-header .tema-fijo {
+      margin-top: 0.5rem;
+      font-weight: 500;
+      color: #0b4b5e;
+      background: #fff;
+      padding: 0.25rem 1.2rem;
+      border-radius: 30px;
+      border: 1px dashed #3a9eb5;
+      font-size: 0.95rem;
+    }
+    .site-header .tema-fijo i {
+      margin-right: 6px;
+      color: #1d7a8c;
+    }
+
+    /* jerarquía visual */
+    h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: #0a3a47;
+      margin: 2rem 0 1rem 0;
+      border-left: 8px solid #3ab4c9;
+      padding-left: 1.2rem;
+    }
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1b5a6b;
+      margin: 1.5rem 0 0.8rem;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      box-shadow: 0 12px 28px -8px rgba(0, 70, 90, 0.15);
+      margin: 1.8rem 0;
+      border: 1px solid #ffffffaa;
+    }
+
+    /* diseño responsive grid */
+    .grid-conceptos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .concepto-item {
+      background: white;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      box-shadow: 0 5px 15px rgba(31, 88, 106, 0.08);
+      border: 1px solid #d5edf2;
+    }
+    .concepto-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -12px #1b7a8c40;
+    }
+    .concepto-item i {
+      font-size: 2.4rem;
+      color: #258f9c;
+      margin-bottom: 0.8rem;
+    }
+    .concepto-item h4 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: #124f63;
+    }
+    .concepto-item p {
+      color: #244e5a;
+      font-weight: 400;
+    }
+    .ejemplo-burbuja {
+      background: #e5f4f9;
+      border-radius: 18px;
+      padding: 1rem 1.3rem;
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      border-left: 4px solid #34a5b8;
+    }
+
+    /* reto final sección */
+    .reto-card {
+      background: #ffffffd9;
+      border-radius: 32px;
+      padding: 2.2rem;
+      border: 2px solid #ffdca8;
+      box-shadow: 0 20px 30px -12px #bd8c4d30;
+      margin: 2.5rem 0;
+    }
+    .btn-reto {
+      background: #f3b33d;
+      border: none;
+      color: #1e3e49;
+      font-weight: 600;
+      padding: 0.9rem 2.2rem;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 5px 0 #b57c1a;
+    }
+    .btn-reto:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #b57c1a;
+    }
+
+    /* test lúdico */
+    .quiz-wrapper {
+      background: linear-gradient(145deg, #ffffff, #f2faff);
+      border-radius: 40px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      box-shadow: inset 0 1px 4px #b9e3ed, 0 15px 25px #c9dbe4;
+    }
+    .pregunta-container {
+      background: #c7e7f0;
+      border-radius: 60px;
+      padding: 1.5rem 2.2rem;
+      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #053b47;
+      box-shadow: 0 6px 0 #6ea6b5;
+    }
+    .opciones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .opcion-btn {
+      background: white;
+      border: 2px solid #b3d9e5;
+      border-radius: 60px;
+      padding: 1rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #134e60;
+      cursor: pointer;
+      transition: all 0.15s;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .opcion-btn i {
+      opacity: 0.5;
+      color: #1f7a8c;
+    }
+    .opcion-btn:hover {
+      background: #def0f5;
+      border-color: #1d7a8c;
+      transform: scale(1.01);
+    }
+    .opcion-btn.selected-correct {
+      background: #b4e0b4;
+      border-color: #1f7840;
+    }
+    .opcion-btn.selected-incorrect {
+      background: #f8d7da;
+      border-color: #b02a37;
+    }
+    .feedback {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 40px;
+      background: #ffffdd;
+      display: inline-block;
+      margin: 1rem 0;
+      font-weight: 500;
+    }
+    .quiz-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .puntuacion {
+      background: #0e4d5e;
+      color: white;
+      padding: 0.6rem 1.8rem;
+      border-radius: 40px;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+    .btn-siguiente {
+      background: #1d7a8c;
+      border: none;
+      color: white;
+      padding: 0.9rem 2.5rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 5px 0 #0b4b5e;
+      transition: all 0.1s;
+    }
+    .btn-siguiente:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 #0b4b5e;
+    }
+    .btn-siguiente:disabled {
+      opacity: 0.5;
+      transform: none;
+      box-shadow: 0 5px 0 #3b6773;
+      pointer-events: none;
+    }
+
+    /* pie de página fijo */
+    .site-footer {
+      margin-top: 4rem;
+      padding: 1.8rem 0 1rem;
+      border-top: 2px solid #cbe2ea;
+      text-align: center;
+      color: #1a5c6e;
+      font-size: 1.15rem;
+      font-weight: 400;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      .wrapper { padding: 1rem; }
+      .site-header h1 { font-size: 2rem; }
+      h2 { font-size: 1.8rem; }
+      .concepto-item { padding: 1.2rem; }
+    }
+
+    /* metacognición silenciosa (colores estoicos) */
+    .soft-highlight {
+      background: #eff9fc;
+      border-radius: 20px;
+      padding: 1.2rem 2rem;
+      font-style: italic;
+      border: 1px solid #bee2ec;
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+  <!-- encabezado fijo -->
+  <header class="site-header">
+    <h1>Bucle creativo</h1>
+    <div class="tagline">Taller diseñado con el corazón de un docente y la mente de un programador.</div>
+    <div class="tema-fijo"><i class="fas fa-comments"></i> Tema: Plan de comunicación · 7. Diseño y desarrollo de app</div>
+  </header>
+
+  <!-- 1. Título principal motivador -->
+  <h2>🧠 Comunicación consciente: el tejido invisible de las grandes aplicaciones</h2>
+  <!-- 2. Objetivo de aprendizaje (párrafo, verbo infinitivo) -->
+  <div class="card">
+    <p style="font-size: 1.3rem; font-weight: 350;"><strong>🎯 Objetivo:</strong> Analizar y diseñar un plan de comunicación efectivo para un equipo de desarrollo, identificando canales, frecuencias, informes de avance y gestión de cambios, mediante el estudio de casos cercanos y la construcción colaborativa de acuerdos, con el fin de fortalecer la transparencia, la resiliencia del equipo y la capacidad de adaptación ética en proyectos tecnológicos.</p>
+  </div>
+
+  <!-- 3. Contextualización narrativa -->
+  <h3>📡 Contexto: cuando el código necesita palabras</h3>
+  <div class="soft-highlight">
+    <p><i class="fas fa-quote-left" style="color:#3a9eb5; opacity:0.7;"></i> Imagina que estás desarrollando una app con tus amigos para organizar ferias escolares. Cada persona va por su lado: una diseña pantallas, otra escribe la lógica, otra habla con posibles usuarios. A los tres días se dan cuenta de que trabajaron en funciones duplicadas y nadie sabía que el profe cambió los requisitos. ¿Te suena conocido? La comunicación no es solo «hablar», es el puente que sincroniza mentes. En la industria, un plan de comunicación evita que el equipo se convierta en una colección de genios aislados. Más que reuniones, hablamos de <strong>acuerdos vivos</strong> que respetan el tiempo, la claridad y la confianza.</p>
+  </div>
+
+  <!-- 4. Desarrollo de la actividad: conceptos detallados con ejemplos contextualizados -->
+  <h3>🧩 Los cuatro pilares del plan (exploración activa)</h3>
+  <div class="grid-conceptos">
+    <!-- canales -->
+    <div class="concepto-item">
+      <i class="fas fa-bullhorn"></i>
+      <h4>Canales de comunicación</h4>
+      <p>No todo pasa por WhatsApp. Según la urgencia y el tipo de mensaje: <strong>sincrónicos</strong> (videollamada, reunión presencial) o <strong>asincrónicos</n> (trello, discord, correo).</p>
+      <div class="ejemplo-burbuja"><i class="fas fa-lightbulb"></i> <strong>Caso:</strong> Para dudas rápidas usan un canal de voz 15 min diarios (daily). Para decisiones importantes, documento compartido con comentarios.</div>
+    </div>
+    <!-- frecuencia -->
+    <div class="concepto-item">
+      <i class="fas fa-clock"></i>
+      <h4>Frecuencia de reuniones</h4>
+      <p>Reuniones diarias de sincronización (daily stand-up) de máximo 15 min. Semanales: revisión de avances. Quincenales: retrospectiva y ajuste.</p>
+      <div class="ejemplo-burbuja"><i class="fas fa-lightbulb"></i> <strong>Ejemplo:</strong> En el proyecto "app escolar" se reúnen lunes, miércoles y viernes 10 min después del recreo. Nadie se cansa, pero todos se enteran.</div>
+    </div>
+    <!-- informes avance -->
+    <div class="concepto-item">
+      <i class="fas fa-chart-line"></i>
+      <h4>Informes de avance</h4>
+      <p>No son burocracia; son <strong>fotografías del progreso</strong>. Un informe puede ser un tablero compartido (Trello) o un documento breve con: logros, bloqueos, próximos pasos.</p>
+      <div class="ejemplo-burbuja"><i class="fas fa-lightbulb"></i> <strong>Idea ágil:</strong> Cada viernes, un "mensaje de 3 puntos" en el grupo: qué se terminó, qué imprevisto surgió, qué necesitan del profe.</div>
+    </div>
+    <!-- gestión de cambios -->
+    <div class="concepto-item">
+      <i class="fas fa-code-branch"></i>
+      <h4>Gestión de cambios</h4>
+      <p>Los requisitos cambian (y está bien). Pero no al grito de "cambiemos todo". Se evalúa impacto, se comunica y se decide en equipo si el cambio se integra o se posterga.</p>
+      <div class="ejemplo-burbuja"><i class="fas fa-lightbulb"></i> <strong>Caso real:</strong> Cliente pide nueva pantalla. El equipo analiza: ¿atrasa la entrega? ¿podemos hacer una versión simple? Se documenta y se acuerda.</div>
+    </div>
+  </div>
+
+  <!-- Espacio para reflexión metacognitiva (aprendizaje activo) -->
+  <div style="background: #eaf4f8; border-radius: 40px; padding: 1.5rem; margin: 2rem 0;">
+    <p><i class="fas fa-feather-alt" style="margin-right: 8px;"></i> <strong>Pausa estoica:</strong> ¿Qué canales usas con tus compañeros y cuáles generan ruido? La comunicación clara es un acto de respeto hacia el tiempo y el esfuerzo ajeno. Anota en tu bitácora una acción concreta para mejorar un canal esta semana.</p>
+  </div>
+
+  <!-- 5. El reto final (interactivo simbólico, pero textual con botón que lanza alerta constructiva) -->
+  <div class="reto-card">
+    <h3 style="border-left-color: #f3b33d; margin-top: 0;">🔥 El reto final: diseño tu plan de comunicación</h3>
+    <p style="font-size: 1.2rem;"><strong>Contexto del desafío:</strong> Ustedes son un equipo que debe desarrollar una app para la feria de ciencias. Tienen 4 semanas, 5 integrantes (programación, diseño, testing, documentación) y un docente como "cliente". El reto consiste en <strong>diseñar en clase</strong> (en grupos) un plan de comunicación que incluya: canales elegidos (justificando), frecuencia de reuniones (con horarios realistas), formato de informe de avance (puede ser plantilla) y procedimiento para gestionar un cambio de último momento (ej. la jueza pide una funcionalidad nueva).</p>
+    <p style="background: #fff1d6; border-radius: 30px; padding: 1rem; margin: 1rem 0;"><i class="fas fa-users"></i> <strong>Extra:</strong> Preparen una breve presentación (3 min) explicando cómo su plan fomenta la resiliencia y la confianza, no solo la productividad.</p>
+    <button class="btn-reto" onclick="alert('🧘‍♂️ Perfecto. Ahora conversen en equipo: ¿su plan resiste una semana de caos? ¿Qué canal es el que más cuida la relación humana?')"><i class="fas fa-rocket"></i>  Iniciar diálogo del reto</button>
+  </div>
+
+  <!-- 6. Evaluación lúdica: juego tipo test (5 preguntas) -->
+  <h3>🎮 Quiz: Comunicación en acción (modo juego)</h3>
+  <div class="quiz-wrapper" id="quiz-app">
+    <div class="pregunta-container" id="pregunta-texto">Cargando...</div>
+    <div id="opciones-area" class="opciones"></div>
+    <div id="feedback-area" class="feedback"></div>
+    <div class="quiz-footer">
+      <div class="puntuacion" id="puntuacion">⭐ 0 / 5</div>
+      <button class="btn-siguiente" id="btn-siguiente" disabled>Siguiente <i class="fas fa-arrow-right"></i></button>
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;"><i class="fas fa-dice-d6"></i> Juego educativo: lee, elige y aprende de cada intento.</p>
+  </div>
+
+  <!-- pie de página fijo -->
+  <footer class="site-footer">
+    Diseñado por: Edwin Méndez J.
+  </footer>
+</div>
+
+<script>
+  (function() {
+    // preguntas (5) con opciones, índice de respuesta correcta (0-3)
+    const preguntas = [
+      { pregunta: "¿Cuál es un ejemplo de canal de comunicación asincrónica útil para un equipo de desarrollo?", opciones: ["Una videollamada diaria", "Un tablero Trello / notificaciones en foro", "Reunión presencial de emergencia", "Llamada por teléfono"], correcta: 1 },
+      { pregunta: "¿Qué frecuencia sugiere la metodología ágil para reuniones diarias de sincronización (daily)?", opciones: ["2 horas cada mañana", "15-20 minutos como máximo", "Solo cuando hay problemas", "Una vez por semana"], correcta: 1 },
+      { pregunta: "¿Cuál es el propósito principal de un informe de avance?", opciones: ["Controlar y presionar al equipo", "Mostrar lo que no se hizo", "Visibilizar logros, bloqueos y próximos pasos", "Cumplir un requisito del cliente sin valor"], correcta: 2 },
+      { pregunta: "En gestión de cambios, ante un nuevo requisito inesperado, el equipo debería:", opciones: ["Aceptarlo de inmediato para quedar bien", "Rechazarlo siempre", "Analizar impacto, decidir colaborativamente y documentar", "Ocultarlo hasta después de entregar"], correcta: 2 },
+      { pregunta: "¿Qué actitud estoica/resiliente fortalece un plan de comunicación?", opciones: ["Ocultar problemas para no preocupar", "Hablar solo de lo técnico, no de emociones", "Adaptarse con transparencia y enfoque en lo que se puede controlar", "Reunirse cada hora para estar sincronizados"], correcta: 2 }
+    ];
+
+    let currentPregunta = 0;
+    let puntaje = 0;
+    let respuestaSeleccionada = false; // si ya eligió en la pregunta actual
+    let opcionElegidaIndex = null;
+    const totalPreguntas = preguntas.length;
+
+    const preguntaEl = document.getElementById('pregunta-texto');
+    const opcionesArea = document.getElementById('opciones-area');
+    const feedbackEl = document.getElementById('feedback-area');
+    const puntuacionEl = document.getElementById('puntuacion');
+    const btnSiguiente = document.getElementById('btn-siguiente');
+
+    function actualizarPuntuacionDisplay() {
+      puntuacionEl.innerText = `⭐ ${puntaje} / ${totalPreguntas}`;
+    }
+
+    function limpiarOpciones() {
+      opcionesArea.innerHTML = '';
+    }
+
+    function cargarPregunta(index) {
+      limpiarOpciones();
+      feedbackEl.innerText = ''; // limpiar feedback
+      respuestaSeleccionada = false;
+      opcionElegidaIndex = null;
+      btnSiguiente.disabled = true;
+
+      const p = preguntas[index];
+      preguntaEl.innerText = `${index+1}. ${p.pregunta}`;
+
+      p.opciones.forEach((texto, i) => {
+        const btn = document.createElement('button');
+        btn.classList.add('opcion-btn');
+        btn.innerHTML = `<i class="fas fa-circle-chevron-right"></i> ${texto}`;
+        btn.setAttribute('data-opcion', i);
+        btn.addEventListener('click', (e) => manejarSeleccion(i, btn));
+        opcionesArea.appendChild(btn);
+      });
+    }
+
+    function manejarSeleccion(idx, btnElement) {
+      if (respuestaSeleccionada) return; // ya eligió
+
+      const p = preguntas[currentPregunta];
+      const esCorrecta = (idx === p.correcta);
+
+      // marcar visualmente todas las opciones (deshabilitar clicks adicionales)
+      const todosLosBotones = document.querySelectorAll('.opcion-btn');
+      todosLosBotones.forEach(btn => { btn.style.pointerEvents = 'none'; });
+
+      // resaltar correcta/incorrecta
+      todosLosBotones.forEach((btn, i) => {
+        if (i === p.correcta) {
+          btn.classList.add('selected-correct');
+        } else if (i === idx && !esCorrecta) {
+          btn.classList.add('selected-incorrect');
+        }
+      });
+
+      // retroalimentación y puntaje
+      if (esCorrecta) {
+        feedbackEl.innerText = '✅ ¡Correcto! Bien visto.';
+        puntaje++;
+      } else {
+        feedbackEl.innerText = `❌ Casi. La respuesta correcta es: ${p.opciones[p.correcta]}.`;
+      }
+
+      respuestaSeleccionada = true;
+      opcionElegidaIndex = idx;
+      actualizarPuntuacionDisplay();
+      btnSiguiente.disabled = false; // habilitar botón siguiente
+    }
+
+    function siguientePregunta() {
+      if (!respuestaSeleccionada) return; // no debería pasar
+
+      if (currentPregunta < totalPreguntas - 1) {
+        currentPregunta++;
+        cargarPregunta(currentPregunta);
+      } else {
+        // fin del juego
+        preguntaEl.innerText = "🏁 ¡Has completado el quiz!";
+        limpiarOpciones();
+        feedbackEl.innerText = `Puntaje final: ${puntaje}/${totalPreguntas}. Sigue explorando la comunicación consciente.`;
+        btnSiguiente.disabled = true;
+        btnSiguiente.innerText = "Completado";
+        // no aumentamos más
+      }
+    }
+
+    // Inicializar juego
+    cargarPregunta(0);
+    actualizarPuntuacionDisplay();
+    btnSiguiente.addEventListener('click', siguientePregunta);
+
+    // reiniciar visualmente si se quiere volver a jugar (opcional) pero lo dejamos fluir
+    // además, el juego permite avanzar hasta el final
+  })();
+</script>
+
+<!-- pequeño detalle extra de sinergia estoica (sutil) -->
+</body>
+</html>

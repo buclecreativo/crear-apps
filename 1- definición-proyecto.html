@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucle creativo · definir proyecto app</title>
+    <!-- fuentes limpias & armónicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- font awesome (iconos sutiles) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f6f9fc;
+            font-family: 'Inter', sans-serif;
+            color: #1a2e3f;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* header estoico pero creativo */
+        .site-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 0 16px;
+            border-bottom: 2px solid rgba(0, 105, 165, 0.15);
+            margin-bottom: 32px;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-area h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0b4f6c, #1f7a8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            color: #2c5f7b;
+            font-style: italic;
+            border-left: 3px solid #98c1d9;
+            padding-left: 12px;
+            margin-top: 6px;
+        }
+
+        .tema-badge {
+            background: #e0f0fa;
+            padding: 12px 20px;
+            border-radius: 60px;
+            font-weight: 600;
+            color: #0b4f6c;
+            box-shadow: 0 4px 10px rgba(0,60,90,0.08);
+            font-size: 1.1rem;
+            border: 1px solid rgba(31, 122, 140, 0.2);
+        }
+
+        .tema-badge i {
+            margin-right: 8px;
+            color: #1f7a8c;
+        }
+
+        /* cards & contenedores */
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 36px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 35px -8px rgba(0, 70, 100, 0.12);
+            border: 1px solid rgba(152, 193, 217, 0.3);
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 40px -10px rgba(11, 79, 108, 0.15);
+        }
+
+        .section-icon {
+            font-size: 2.2rem;
+            color: #1f7a8c;
+            margin-right: 16px;
+            vertical-align: middle;
+        }
+
+        h2 {
+            font-size: 1.9rem;
+            margin-bottom: 24px;
+            color: #0b4f6c;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px dashed #b6d7e8;
+            padding-bottom: 12px;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 28px 0 16px;
+            color: #1d5e7a;
+        }
+
+        .resaltado {
+            background: #ebf5fa;
+            padding: 20px 24px;
+            border-radius: 28px;
+            border-left: 8px solid #1f7a8c;
+            margin: 24px 0;
+            font-weight: 500;
+        }
+
+        .grid-ejemplo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .ejemplo-item {
+            background: white;
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: 0 10px 18px rgba(0, 60, 90, 0.05);
+            border: 1px solid #c7e1ee;
+        }
+
+        .ejemplo-item i {
+            color: #1f7a8c;
+            font-size: 1.8rem;
+            margin-bottom: 14px;
+        }
+
+        /* reto final */
+        .reto-caja {
+            background: linear-gradient(145deg, #f1f9ff, #ffffff);
+            border: 2px solid #1f7a8c;
+            border-radius: 40px;
+            padding: 28px;
+        }
+
+        .btn-reto {
+            background: #0b4f6c;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 14px rgba(11,79,108,0.3);
+            margin-top: 20px;
+        }
+
+        .btn-reto:hover {
+            background: #1f7a8c;
+            transform: scale(1.02);
+        }
+
+        /* evaluación lúdica (quiz) */
+        .quiz-wrapper {
+            background: #d9eef7;
+            border-radius: 44px;
+            padding: 32px;
+        }
+
+        .pregunta-container {
+            background: white;
+            border-radius: 32px;
+            padding: 28px;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            box-shadow: inset 0 -3px 0 #cde3ec;
+        }
+
+        .opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin: 24px 0 20px;
+        }
+
+        .opcion-btn {
+            background: white;
+            border: 2px solid #b3d3e6;
+            border-radius: 60px;
+            padding: 16px 28px;
+            font-size: 1.15rem;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .opcion-btn i {
+            width: 28px;
+            color: #1f7a8c;
+            font-size: 1.3rem;
+        }
+
+        .opcion-btn:hover:not(:disabled) {
+            background: #e3f0f9;
+            border-color: #1f7a8c;
+            transform: translateX(8px);
+        }
+
+        .opcion-btn.correcta {
+            background: #b7e3c0;
+            border-color: #1e8044;
+            color: #0a4f2a;
+        }
+
+        .opcion-btn.incorrecta {
+            background: #f8d7da;
+            border-color: #b0454d;
+            color: #811e26;
+            text-decoration: line-through 2px #a12b34;
+        }
+
+        .opcion-btn:disabled {
+            opacity: 0.9;
+            cursor: default;
+            border-style: dashed;
+        }
+
+        .feedback {
+            font-size: 1.2rem;
+            padding: 18px 24px;
+            border-radius: 50px;
+            background: #fefefe;
+            margin: 20px 0 10px;
+            border-left: 8px solid #1f7a8c;
+            font-weight: 500;
+        }
+
+        .puntaje {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b4f6c;
+            display: inline-block;
+            background: white;
+            padding: 6px 24px;
+            border-radius: 40px;
+            margin-right: 20px;
+        }
+
+        .next-btn {
+            background: #0b4f6c;
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(0,80,110,0.3);
+        }
+
+        .next-btn:disabled {
+            background: #a1c0d1;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .reiniciar-quiz {
+            background: transparent;
+            border: 2px solid #1f7a8c;
+            color: #1a2e3f;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-left: 16px;
+            cursor: pointer;
+        }
+
+        .footer {
+            margin-top: 50px;
+            padding: 28px 0 36px;
+            border-top: 2px solid #c7ddee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            color: #2c5770;
+        }
+
+        .disenador {
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .disenador i {
+            color: #c44545;
+            margin: 0 6px;
+        }
+
+        @media (max-width: 680px) {
+            .site-header {
+                flex-direction: column;
+                align-items: start;
+                gap: 16px;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- encabezado con texto fijo -->
+        <header class="site-header">
+            <div class="logo-area">
+                <h1>Bucle creativo</h1>
+                <div class="tagline">Taller diseñado con el corazón de un docente y la mente de un programador.</div>
+            </div>
+            <div class="tema-badge"><i class="fas fa-mobile-alt"></i> Diseño y desarrollo · definición del proyecto</div>
+        </header>
+
+        <!-- título principal motivador -->
+        <div class="card" style="background: #ffffff; border-left: 10px solid #1f7a8c;">
+            <h1 style="font-size: 2.8rem; line-height: 1.2; margin-bottom: 16px;">🧠 ¿Y si tu idea <span style="color: #1f7a8c;">pudiera cambiar tu barrio?</span></h1>
+            <p style="font-size: 1.4rem; font-weight: 300;">Define los cimientos de una aplicación con pensamiento estratégico, empatía y resiliencia.</p>
+        </div>
+
+        <!-- objetivo de aprendizaje -->
+        <div class="card">
+            <h2><i class="fas fa-bullseye section-icon"></i> Objetivo de aprendizaje</h2>
+            <p style="font-size: 1.3rem; background: #e6f2f9; padding: 28px; border-radius: 40px;"><strong>Formular</strong> los elementos fundacionales de un proyecto de software (problema, justificación, objetivos, alcance y resultados) mediante el análisis de contextos cercanos, la reflexión ética y el trabajo colaborativo, <strong>para construir</strong> soluciones digitales con propósito e impacto social.</p>
+        </div>
+
+        <!-- contextualización narrativa -->
+        <div class="card">
+            <h2><i class="fas fa-feather-alt section-icon"></i> Contexto que late</h2>
+            <div class="resaltado">
+                <p><i class="fas fa-quote-left" style="color:#1f7a8c; opacity:0.7;"></i> Imagina que cada tarde, en tu barrio, ves a los adultos mayores cargar bolsas pesadas porque no hay una tienda virtual cerca. O tus amigos pierden horas buscando quién repara una computadora. Duele, ¿verdad? Duele porque la tecnología podría abrazar esas necesidades. <br><br>Detrás de cada app hay una historia no contada: la de alguien que decidió observar, preguntarse <em>¿y si…?</em> y dar el primer paso. Eso es lo que empezarás hoy: no a programar, sino a <strong>darle forma humana a una idea</strong>. Porque todo proyecto nace de una inquietud, y la claridad que construyas ahora será tu brújula estoica cuando todo se complique. Resiliencia, foco y creatividad.</p>
+            </div>
+        </div>
+
+        <!-- desarrollo de la actividad (conceptos detallados + ejemplos prácticos) -->
+        <div class="card">
+            <h2><i class="fas fa-code-branch section-icon"></i> La anatomía de una idea</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 24px;">Vamos a explorar cada pieza con ejemplos desde un caso real: <strong>“app comunitaria para conectar pequeños talleres de reparación con vecinos”</strong>.</p>
+            
+            <div class="grid-ejemplo">
+                <div class="ejemplo-item">
+                    <i class="fas fa-search"></i>
+                    <h3>1. Problema o necesidad</h3>
+                    <p>En el sur de Quito, los jóvenes no saben dónde reparar sus dispositivos; los talleres tienen baja clientela. <em>“Desconexión entre oferta y demanda local”</em>. Pregúntate: ¿a quién afecta, dónde, por qué ahora?</p>
+                </div>
+                <div class="ejemplo-item">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h3>2. Justificación</h3>
+                    <p>Más del 60% de hogares guarda equipos rotos. Una app reduciría residuos electrónicos, generaría ingresos y fortalecería el tejido social. La justificación combina datos, valores (cuidado del ambiente) y oportunidad.</p>
+                </div>
+                <div class="ejemplo-item">
+                    <i class="fas fa-flag-checkered"></i>
+                    <h3>3. Objetivos (Gral + específicos)</h3>
+                    <p><strong>General:</strong> Facilitar la conexión entre talleres de reparación y vecinos mediante una interfaz sencilla. <br>
+                    <strong>Específicos:</strong> 1. Catalogar servicios por zona. 2. Implementar chat rápido. 3. Valorar confianza del taller.</p>
+                </div>
+                <div class="ejemplo-item">
+                    <i class="fas fa-globe-americas"></i>
+                    <h3>4. Alcance y limitaciones</h3>
+                    <p><strong>Alcance:</strong> MVP con 50 talleres de prueba en el sector La Tola. <strong>Limitaciones:</strong> no incluye pagos en línea en primera versión; solo disponible para Android. Saber qué NO harás es tan estratégico como lo que sí.</p>
+                </div>
+                <div class="ejemplo-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>5. Resultados esperados</h3>
+                    <p>Que al menos 20 talleres incrementen sus clientes en 3 meses; mediremos satisfacción mediante encuestas. Resultados tangibles (números) e intangibles (confianza, aprendizaje comunitario).</p>
+                </div>
+            </div>
+            <p style="margin-top: 32px; background: #f9fcff; padding: 20px; border-radius: 30px;"><i class="fas fa-lightbulb" style="color:#1f7a8c;"></i> <strong>Experimenta:</strong> entrevista a un familiar o vecino, descubre una necesidad cotidiana y redacta un problema en una frase. Eso es empatía aplicada.</p>
+        </div>
+
+        <!-- EL RETO FINAL (integrador) -->
+        <div class="reto-caja card">
+            <h2 style="border-bottom-color: #1f7a8c;"><i class="fas fa-crown section-icon"></i> El reto final: Faro Digital</h2>
+            <p style="font-size: 1.3rem;">En equipos de 3, elijan un problema real de su entorno (institución, barrio, parroquia). Desarrollen la <strong>definición completa</strong> del proyecto: problema, justación (con datos ficticios pero coherentes), objetivo general + 3 específicos, alcance (2 funcionalidades core y 2 limitaciones) y resultados esperados (uno cuantitativo, otro cualitativo). </p>
+            <p style="background: #ffffffb3; border-radius: 28px; padding: 18px; margin: 24px 0;"><i class="fas fa-puzzle-piece"></i> <strong>Extra creativo:</strong> dibujen un storyboard de cómo su app sería usada por una persona. Prepárense para contarlo en 3 minutos con el corazón en la mano.</p>
+            <button class="btn-reto" id="inspirarBtn"><i class="fas fa-dice"></i>  Inspírame con un escenario</button>
+            <p id="inspiracionOutput" style="margin-top: 24px; font-size: 1.2rem; font-weight: 400; background: #e0f0f5; border-radius: 50px; padding: 16px;"></p>
+        </div>
+
+        <!-- EVALUACIÓN LÚDICA: juego test interactivo 5 preguntas -->
+        <div class="quiz-wrapper" id="quizSection">
+            <h2 style="margin-top: 0; border-bottom: none;"><i class="fas fa-gamepad section-icon"></i> Quiz: afina tu criterio</h2>
+            <p style="margin-bottom: 10px;">Demuestra tu comprensión ¡sin estrés! cada acierto suma +1.</p>
+            <div class="pregunta-container" id="preguntaTexto">Cargando pregunta...</div>
+            <div id="opcionesContainer" class="opciones"></div>
+            <div id="feedbackMensaje" class="feedback">🔍 Selecciona una opción</div>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
+                <div>
+                    <span class="puntaje" id="puntajeDisplay">0</span>
+                    <span style="font-weight: 500;">/5 puntos</span>
+                </div>
+                <div>
+                    <button class="next-btn" id="nextBtn" disabled><i class="fas fa-arrow-right"></i> Siguiente pregunta</button>
+                    <button class="reiniciar-quiz" id="reiniciarQuiz"><i class="fas fa-redo-alt"></i> Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- pie de página fijo -->
+        <footer class="footer">
+            <div class="disenador"><i class="fas fa-heart" style="color:#e06b6b;"></i> Diseñado por: Edwin Méndez J.</div>
+            <div style="font-size: 0.95rem;">© bachillerato técnico · humanidad digital</div>
+        </footer>
+    </div>
+
+    <script>
+        (function(){
+            // ---------- RETO INSPIRADOR ----------
+            const inspirarBtn = document.getElementById('inspirarBtn');
+            const inspiracionOutput = document.getElementById('inspiracionOutput');
+            const escenarios = [
+                "En tu colegio no hay un lugar donde comprar útiles de papelería por unidad. Diseñen una app para reutilizar y compartir materiales.",
+                "Adultos mayores del mercado central necesitan un directorio de domicilios accesible. Su app podría incluir iconos grandes y voz.",
+                "Los fines de semana, jóvenes buscan canchas deportivas libres. ¿Y una app que muestre disponibilidad en tiempo real y arme equipos?",
+                "En tu barrio, las mascotas se pierden a menudo. Una red vecinal con alertas geolocalizadas y fichas de mascotas sería un proyecto increíble.",
+                "Estudiantes de tu paralelo no encuentran quién les ayude con tareas de matemáticas. Una app de mentorías entre compañeros (trueque de conocimientos)."
+            ];
+            inspirarBtn.addEventListener('click', ()=>{
+                const randomIndex = Math.floor(Math.random() * escenarios.length);
+                inspiracionOutput.innerHTML = `<i class="fas fa-lightbulb" style="color:#1f7a8c;"></i> ${escenarios[randomIndex]}`;
+            });
+
+            // ---------- QUIZ INTERACTIVO ----------
+            const questions = [
+                {
+                    question: "¿Qué elemento responde a 'por qué es importante y ético llevar a cabo el proyecto'?",
+                    options: ["Objetivo general", "Justificación", "Alcance", "Resultados esperados"],
+                    correct: 1
+                },
+                {
+                    question: "Dentro del alcance de un proyecto se define:",
+                    options: ["El lenguaje de programación", "Lo que el proyecto incluirá y también lo que NO incluirá (limitaciones)", "Las encuestas de satisfacción", "El nombre de la app"],
+                    correct: 1
+                },
+                {
+                    question: "Si tu objetivo general es 'mejorar la comunicación vecinal', un objetivo específico podría ser:",
+                    options: ["Implementar un chat comunitario con notificaciones", "Ganar dinero con publicidad", "Comprar servidores", "Diseñar un logo animado"],
+                    correct: 0
+                },
+                {
+                    question: "Los resultados esperados deben combinar aspectos...",
+                    options: ["Solo técnicos (base de datos)", "Solo económicos (ganancias)", "Cuantitativos y cualitativos (ej: usuarios activos + percepción de utilidad)", "El número de líneas de código"],
+                    correct: 2
+                },
+                {
+                    question: "En la definición del problema, es fundamental incluir:",
+                    options: ["El cronograma detallado", "A quién afecta y en qué contexto", "El color de la interfaz", "El costo del desarrollador"],
+                    correct: 1
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            let score = 0;
+            let quizFinished = false;
+            let respuestaSeleccionada = false; // para controlar bloqueo
+
+            const preguntaEl = document.getElementById('preguntaTexto');
+            const opcionesDiv = document.getElementById('opcionesContainer');
+            const feedbackEl = document.getElementById('feedbackMensaje');
+            const puntajeSpan = document.getElementById('puntajeDisplay');
+            const nextBtn = document.getElementById('nextBtn');
+            const reiniciarBtn = document.getElementById('reiniciarQuiz');
+
+            function renderPregunta(index) {
+                if (quizFinished && index >= questions.length) {
+                    preguntaEl.innerText = "🎉 ¡Completaste el quiz!";
+                    opcionesDiv.innerHTML = '';
+                    feedbackEl.innerHTML = `🏁 Puntaje final: ${score}/${questions.length}. Sigue afinando tu mirada de proyecto.`;
+                    nextBtn.disabled = true;
+                    return;
+                }
+                const q = questions[index];
+                preguntaEl.innerText = q.question;
+                opcionesDiv.innerHTML = '';
+                // crear opciones
+                q.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.classList.add('opcion-btn');
+                    btn.innerHTML = `<i class="fas fa-circle"></i> ${opt}`;
+                    btn.setAttribute('data-opt-index', idx);
+                    btn.addEventListener('click', (e) => seleccionarRespuesta(idx, btn, q.correct));
+                    opcionesDiv.appendChild(btn);
+                });
+                feedbackEl.innerText = '🤔 Elige una respuesta';
+                nextBtn.disabled = true;
+                respuestaSeleccionada = false;
+            }
+
+            function seleccionarRespuesta(optIndex, btnElement, correctIndex) {
+                if (respuestaSeleccionada || quizFinished) return; // ya respondió esta pregunta
+                respuestaSeleccionada = true;
+                const esCorrecta = (optIndex === correctIndex);
+                // deshabilitar todos los botones
+                const allBtns = document.querySelectorAll('.opcion-btn');
+                allBtns.forEach(btn => btn.disabled = true);
+                // marcar estilo
+                allBtns.forEach((btn, i) => {
+                    if (i === correctIndex) {
+                        btn.classList.add('correcta');
+                        btn.innerHTML = `<i class="fas fa-check-circle"></i> ${questions[currentQuestionIndex].options[i]}`;
+                    } else if (i === optIndex && !esCorrecta) {
+                        btn.classList.add('incorrecta');
+                        btn.innerHTML = `<i class="fas fa-times-circle"></i> ${questions[currentQuestionIndex].options[i]}`;
+                    } else {
+                        btn.innerHTML = `<i class="far fa-circle"></i> ${questions[currentQuestionIndex].options[i]}`;
+                    }
+                });
+
+                if (esCorrecta) {
+                    feedbackEl.innerHTML = '✅ ¡Correcto! +1 punto. ' + (currentQuestionIndex === 4 ? 'Cierre brillante.' : 'Sigue así.');
+                    score++;
+                } else {
+                    feedbackEl.innerHTML = `❌ Incorrecto. La respuesta correcta es: "${questions[currentQuestionIndex].options[correctIndex]}". ¡Aprendiste!`;
+                }
+                puntajeSpan.innerText = score;
+                nextBtn.disabled = false; // habilitar botón siguiente
+            }
+
+            function nextQuestion() {
+                if (!respuestaSeleccionada && currentQuestionIndex < questions.length) {
+                    // por si intentan saltar sin responder, no debe pasar
+                    return;
+                }
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    renderPregunta(currentQuestionIndex);
+                } else if (currentQuestionIndex === questions.length - 1) {
+                    // terminar quiz
+                    currentQuestionIndex++; // para marcar finish
+                    quizFinished = true;
+                    preguntaEl.innerText = "🎓 ¡Evaluación completada!";
+                    opcionesDiv.innerHTML = '';
+                    feedbackEl.innerHTML = `✨ Puntaje total: ${score}/${questions.length}. Recuerda: un gran proyecto empieza con preguntas claras.`;
+                    nextBtn.disabled = true;
+                    puntajeSpan.innerText = score;
+                }
+            }
+
+            function reiniciarQuiz() {
+                currentQuestionIndex = 0;
+                score = 0;
+                quizFinished = false;
+                respuestaSeleccionada = false;
+                puntajeSpan.innerText = '0';
+                renderPregunta(0);
+            }
+
+            nextBtn.addEventListener('click', nextQuestion);
+            reiniciarBtn.addEventListener('click', reiniciarQuiz);
+
+            // inicializar quiz
+            renderPregunta(0);
+        })();
+    </script>
+</body>
+</html>

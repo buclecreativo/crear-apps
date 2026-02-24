@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucle Creativo · Metodologías de desarrollo</title>
+    <!-- Fuentes modernas y armónicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos suaves -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            flex: 1;
+        }
+
+        /* Encabezado con identidad estoica y sinérgica */
+        .site-header {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 2.5rem;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 1.2rem;
+        }
+
+        .site-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            background: linear-gradient(145deg, #1e293b, #3b3f5c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .site-header .sub {
+            font-size: 1.1rem;
+            color: #334155;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .site-header .sub i {
+            color: #b4536b;  /* toque sereno */
+        }
+
+        /* tarjeta de tema flotante */
+        .topic-badge {
+            background: #e9eef3;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            font-size: 1rem;
+            border: 1px solid #b9c7d9;
+            margin: 1rem 0 0.5rem 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        /* jerarquía visual */
+        h2 {
+            font-size: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            margin: 2rem 0 1rem 0;
+            border-left: 6px solid #b4536b;
+            padding-left: 1.2rem;
+            color: #0b1e33;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 1.5rem 0 0.8rem;
+            color: #1e293b;
+        }
+
+        /* tarjetas y contenedores */
+        .card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2rem;
+            box-shadow: 0 20px 35px -10px rgba(0,20,30,0.1);
+            margin: 2rem 0;
+            border: 1px solid #eef2f6;
+        }
+
+        .grid-2, .grid-3 {
+            display: grid;
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .grid-2 { grid-template-columns: repeat(2,1fr); }
+        .grid-3 { grid-template-columns: repeat(3,1fr); }
+
+        .metodologia-item {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, box-shadow 0.2s;
+        }
+        .metodologia-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 25px -8px rgba(79,70,120,0.15);
+        }
+
+        .metodologia-item i {
+            font-size: 2rem;
+            color: #b4536b;
+            margin-bottom: 0.8rem;
+        }
+
+        /* reto final */
+        .reto-box {
+            background: linear-gradient(135deg, #f1f4f9, #ffffff);
+            border-radius: 28px;
+            padding: 2rem;
+            border: 2px dashed #b9a7c2;
+        }
+
+        /* zona de juego tipo test */
+        .quiz-wrapper {
+            background: #e7eef6;
+            border-radius: 36px;
+            padding: 2rem;
+            margin: 2.5rem 0 1.5rem;
+        }
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .score-badge {
+            background: #2c3f5c;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .question-text {
+            font-size: 1.7rem;
+            font-weight: 500;
+            margin-bottom: 1.8rem;
+            line-height: 1.4;
+        }
+
+        .answers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .answer-btn {
+            background: white;
+            border: 2px solid #cbd5e1;
+            border-radius: 60px;
+            padding: 1rem 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .answer-btn i {
+            opacity: 0.6;
+            font-size: 1.3rem;
+        }
+        .answer-btn:hover {
+            background: #f1f5f9;
+            border-color: #9aa9b9;
+        }
+        .answer-btn.selected-correct {
+            background: #c7e6d2;
+            border-color: #1f7b4d;
+        }
+        .answer-btn.selected-wrong {
+            background: #ffe2da;
+            border-color: #ba4b3b;
+        }
+        .feedback {
+            margin: 1.8rem 0 1rem;
+            padding: 1rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 500;
+            display: inline-block;
+            background: #e2e8f0;
+        }
+        .next-btn {
+            background: #1e293b;
+            color: white;
+            border: none;
+            font-size: 1.3rem;
+            padding: 0.9rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            box-shadow: 0 6px 14px rgba(27, 45, 65, 0.2);
+        }
+        .next-btn:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        .next-btn:hover {
+            background: #2d3b50;
+        }
+
+        footer {
+            background: #cfddee32;
+            padding: 1.8rem 2rem;
+            text-align: center;
+            font-size: 1.1rem;
+            border-top: 2px solid #cbd5e1;
+            color: #254358;
+            font-weight: 400;
+            margin-top: 3rem;
+        }
+
+        /* responsive fino */
+        @media (max-width: 700px) {
+            .wrapper { padding: 1rem; }
+            .site-header h1 { font-size: 2.1rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+            .answers { grid-template-columns: 1fr; }
+            .question-text { font-size: 1.4rem; }
+        }
+        @media (max-width: 480px) {
+            .quiz-header { flex-direction: column; align-items: start; gap: 0.8rem; }
+        }
+
+        /* metáforas visuales estoicas */
+        .soft-highlight {
+            background: #fae8f1;
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        hr {
+            border: 1px solid #dbe4ed;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Encabezado fijo -->
+        <header class="site-header">
+            <h1>Bucle creativo</h1>
+            <div class="sub">
+                <i class="fas fa-heart" style="color:#b4536b;"></i>
+                <span>Taller diseñado con el corazón de un docente y la mente de un programador.</span>
+            </div>
+            <div class="topic-badge">
+                <i class="fas fa-diagram-project"></i> Metodología de desarrollo · 5to bachillerato
+            </div>
+        </header>
+
+        <!-- 1. Título principal motivador (ya aparece en h1, pero añadimos un eslogan potente) -->
+        <section style="margin-bottom: 1rem;">
+            <p style="font-size: 1.5rem; font-weight: 300; color: #25465f;"><i class="fas fa-code-branch" style="color:#7c5e8f;"></i> Construir con propósito: <span class="soft-highlight">metodologías que transforman ideas en realidades</span></p>
+        </section>
+
+        <!-- 2. Objetivo de aprendizaje (verbo infinitivo, integrador) -->
+        <section class="card" style="background: #fdf6f9;">
+            <h2 style="border-left-color: #75618b; margin-top: 0;">🌱 Objetivo de aprendizaje</h2>
+            <p style="font-size: 1.3rem;">Comprender y seleccionar críticamente metodologías de desarrollo (ágil, cascada, Scrum) organizando equipos, definiendo roles y utilizando herramientas de gestión, para afrontar desafíos digitales con creatividad, ética colaborativa y resiliencia.</p>
+        </section>
+
+        <!-- 3. Contextualización narrativa -->
+        <section>
+            <h2>📘 Contexto: el estudio donde ocurre la magia</h2>
+            <div style="background: #eef4fa; border-radius: 2rem; padding: 2rem;">
+                <p>Imagina que junto a dos amigas decides crear una app que conecte voluntarios con comedores comunitarios en tu ciudad. Al principio todo es emoción, pero pronto surgen preguntas: ¿empezamos programando? ¿quién investiga? ¿cómo nos organizamos sin morir en el intento? Así como un arquitecto necesita planos, un equipo de desarrollo necesita una <strong>metodología</strong>. No es burocracia, es un mapa para que la creatividad no se ahogue en el caos. En esta experiencia, tú y tu equipo descubrirán que la forma en que trabajamos define tanto como la idea. Será un viaje de sinergia, decisiones estoicas y mucha resiliencia.</p>
+                <p style="margin-top: 1rem;"><i class="fas fa-lightbulb" style="color:#b4536b;"></i>  Cada metodología refleja una forma de ver el mundo: la predictibilidad de la cascada, la adaptabilidad ágil, la autogestión de Scrum. Vamos a explorarlas.</p>
+            </div>
+        </section>
+
+        <!-- 4. Desarrollo de la actividad (conceptos + ejemplos) -->
+        <section>
+            <h2>🔍 Laboratorio metodológico</h2>
+            <div class="grid-3">
+                <div class="metodologia-item"><i class="fas fa-waterfall"></i><h3>Cascada</h3><p>Secuencia lineal: requisitos → diseño → desarrollo → pruebas. Ideal cuando los requisitos son claros y estables. <br> <span class="soft-highlight">Ejemplo:</span> actualizar el sistema de matrícula de un colegio con normativa fija.</p></div>
+                <div class="metodologia-item"><i class="fas fa-sync-alt"></i><h3>Ágil</h3><p>Iterativo, flexible, entrega valor rápido. Manifiesto ágil: individuos e interacciones, responder al cambio. <br> <span class="soft-highlight">Ejemplo:</span> startup que crea una app de delivery y pivota según feedback.</p></div>
+                <div class="metodologia-item"><i class="fab fa-staylinked"></i><h3>Scrum</h3><p>Marco ágil con roles fijos (Product Owner, Scrum Master, equipo). Sprints, reuniones diarias. <br> <span class="soft-highlight">Ejemplo:</span> equipo de 5 desarrollando un portal estudiantil en sprints de 2 semanas.</p></div>
+            </div>
+
+            <h3>🧑‍🤝‍🧑 Organización del equipo y roles</h3>
+            <div class="grid-2" style="margin-top: 0;">
+                <div style="background: #f6f1fe; border-radius: 1.8rem; padding: 1.8rem;">
+                    <i class="fas fa-users-cog" style="font-size: 2rem;"></i>
+                    <p><strong>Roles esenciales:</strong> Analista (capta necesidades), diseñador (UX/UI), programador front/back, tester, project manager. Pero en equipos pequeños se acumulan: todos colaboran, pero hay un responsable de cada área.</p>
+                </div>
+                <div style="background: #f1faf0; border-radius: 1.8rem; padding: 1.8rem;">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p><strong>Herramientas de gestión:</strong> Trello (tableros Kanban), Jira (para Scrum), Asana, Notion. Sirven para visualizar tareas, evitar cuellos de botella y que el equipo fluya como un solo organismo.</p>
+                    <p><i class="fas fa-check-circle" style="color:#0e7330;"></i> Practica: crea un tablero con "Pendiente, En curso, Revisión, Hecho".</p>
+                </div>
+            </div>
+            <p style="background: #f3eef9; padding: 1rem 2rem; border-radius: 3rem; font-style: italic;">💡 Reflexión estoica: la metodología no quita libertad, nos libera de la incertidumbre que paraliza. Organizarse es un acto de respeto hacia el equipo y hacia nosotros mismos.</p>
+        </section>
+
+        <!-- 5. El reto final (tarea en clase) -->
+        <section>
+            <h2>⚡ El reto final: diseño tu propio manifiesto</h2>
+            <div class="reto-box">
+                <p><strong>Contexto simulado:</strong> La municipalidad de tu ciudad abre una convocatoria juvenil para crear una app que fomente el turismo comunitario. Tu equipo (4-5 personas) tiene 5 semanas para presentar un prototipo funcional. Pero antes del código, deben decidir:</p>
+                <ul style="margin: 1.5rem 0 1.5rem 2rem; font-size: 1.1rem;">
+                    <li><i class="fas fa-check-circle" style="color:#25603f;"></i> ¿Qué metodología combinarían? (pueden mezclar: plan inicial en cascada y luego ágil).</li>
+                    <li><i class="fas fa-check-circle" style="color:#25603f;"></i> Definir 4 roles con responsabilidades (aunque compartan tareas).</li>
+                    <li><i class="fas fa-check-circle" style="color:#25603f;"></i> Elegir una herramienta de gestión y diseñar las primeras 10 tareas.</li>
+                    <li><i class="fas fa-check-circle" style="color:#25603f;"></i> Redactar 3 principios de equipo (ej: "reuniones de pie de 10 min", "celebramos los errores como aprendizaje").</li>
+                </ul>
+                <p><strong>Producto final:</strong> una presentación de 5 minutos (canva / pizarra) donde expliquen su arquitectura metodológica. ¡La creatividad y la claridad ganan!</p>
+                <p style="margin-top: 1.2rem;">🔁 El desafío no tiene una única respuesta: florece en la discusión y el acuerdo colectivo.</p>
+            </div>
+        </section>
+
+        <!-- 6. Evaluación lúdica - juego tipo test 5 preguntas -->
+        <section>
+            <h2>🧩 Quiz: La aventura metodológica</h2>
+            <div class="quiz-wrapper" id="quizApp">
+                <div class="quiz-header">
+                    <span class="score-badge" id="scoreDisplay">🏆 0/5</span>
+                    <span style="font-size: 1.2rem; background: #fcf2e1; padding: 0.4rem 1.2rem; border-radius: 40px;"><i class="fas fa-brain"></i> Comprueba tu sabiduría</span>
+                </div>
+                <div id="preguntaActual">
+                    <!-- JS inyecta dinámicamente -->
+                </div>
+                <div id="feedbackArea" class="feedback" style="min-width: 200px;">✨ elige una opción</div>
+                <button class="next-btn" id="nextBtn" disabled><i class="fas fa-arrow-right"></i> Siguiente pregunta</button>
+            </div>
+            <p style="margin-top: 0.5rem; opacity: 0.7;"><i class="far fa-smile"></i> Responder con calma, aprender con alegría.</p>
+        </section>
+
+        <!-- Pie de página fijo -->
+        <footer>
+            <p>Diseñado por: Edwin Méndez J. <i class="fas fa-code"></i> con estoicismo y sinergia</p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            // banco de preguntas (exactamente 5)
+            const questions = [
+                {
+                    question: "¿Qué metodología utiliza sprints (iteraciones de 1 a 4 semanas) y roles como Product Owner?",
+                    options: ["Cascada", "Scrum", "Modelo en V", "Programación extrema (XP)"],
+                    correct: 1 // índice 0 -> "Scrum"
+                },
+                {
+                    question: "¿Cuál de las siguientes NO es una herramienta de gestión de proyectos?",
+                    options: ["Trello", "Jira", "Photoshop", "Asana"],
+                    correct: 2 // Photoshop
+                },
+                {
+                    question: "En un equipo de desarrollo, ¿quién suele priorizar las tareas del backlog en Scrum?",
+                    options: ["Scrum Master", "Product Owner", "Desarrollador front-end", "Tester"],
+                    correct: 1 // Product Owner
+                },
+                {
+                    question: "¿Qué principio ágil se relaciona con 'responder al cambio sobre seguir un plan'?",
+                    options: ["Predictibilidad total", "Documentación exhaustiva", "Adaptabilidad", "Jerarquía rígida"],
+                    correct: 2 // Adaptabilidad
+                },
+                {
+                    question: "Si tu proyecto tiene requisitos muy claros y poco cambio, ¿qué metodología tradicional encaja mejor?",
+                    options: ["Cascada", "Kanban", "Scrum", "Extreme Programming"],
+                    correct: 0 // Cascada
+                }
+            ];
+
+            let currentIndex = 0;          // 0..4
+            let score = 0;
+            let answered = false;          // si ya respondió la actual
+            let selectedAnswerIndex = -1;   
+            const totalQuestions = questions.length;
+
+            // Elementos del DOM
+            const preguntaDiv = document.getElementById('preguntaActual');
+            const feedbackDiv = document.getElementById('feedbackArea');
+            const nextBtn = document.getElementById('nextBtn');
+            const scoreSpan = document.getElementById('scoreDisplay');
+
+            function renderQuestion() {
+                const q = questions[currentIndex];
+                let html = `<div class="question-text">${currentIndex+1}. ${q.question}</div>`;
+                html += '<div class="answers" id="answersContainer">';
+                q.options.forEach((opt, idx) => {
+                    // Iconos variados
+                    const icono = idx === 0 ? '🔹' : (idx === 1 ? '🔸' : (idx === 2 ? '✨' : '💠'));
+                    html += `<div class="answer-btn" data-opt-index="${idx}"><i class="fas fa-circle" style="font-size: 0.6rem; color:#af7e9b;"></i> ${icono} ${opt}</div>`;
+                });
+                html += '</div>';
+                preguntaDiv.innerHTML = html;
+
+                // Reset estado
+                answered = false;
+                selectedAnswerIndex = -1;
+                feedbackDiv.innerHTML = '🤔 lee y elige una opción';
+                // habilitar respuestas, deshabilitar botón next
+                nextBtn.disabled = true;
+
+                // adjuntar eventos a las opciones
+                document.querySelectorAll('.answer-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        if (answered) return; // ya respondió esta pregunta
+                        const optIndex = parseInt(btn.dataset.optIndex, 10);
+                        handleAnswer(optIndex);
+                    });
+                });
+                // quitar clases previas de los botones
+            }
+
+            function handleAnswer(selectedIdx) {
+                if (answered) return;
+                answered = true;
+                selectedAnswerIndex = selectedIdx;
+                const q = questions[currentIndex];
+                const isCorrect = (selectedIdx === q.correct);
+
+                // Actualizar puntuación
+                if (isCorrect) {
+                    score++;
+                    feedbackDiv.innerHTML = '✅ ¡Correcto! Bien pensado.';
+                } else {
+                    feedbackDiv.innerHTML = `❌ No es correcto. La respuesta adecuada es: "${q.options[q.correct]}".`;
+                }
+
+                // marcar visualmente las opciones
+                document.querySelectorAll('.answer-btn').forEach((btn, idx) => {
+                    btn.classList.remove('selected-correct', 'selected-wrong');
+                    if (idx === q.correct) {
+                        btn.classList.add('selected-correct'); // pinta correcta de verde
+                    } else if (idx === selectedIdx && idx !== q.correct) {
+                        btn.classList.add('selected-wrong');   // su respuesta erronea
+                    }
+                });
+
+                // Actualizar score
+                scoreSpan.innerHTML = `🏆 ${score}/${totalQuestions}`;
+                // Habilitar botón siguiente
+                nextBtn.disabled = false;
+            }
+
+            function nextQuestion() {
+                if (!answered) return; // botón disabled evita esto, pero doble check
+
+                if (currentIndex < totalQuestions - 1) {
+                    currentIndex++;
+                    renderQuestion();
+                } else {
+                    // Fin del juego
+                    preguntaDiv.innerHTML = `<div style="font-size: 2rem; text-align: center; padding: 2rem;">🎉 Has completado el desafío. Puntaje final: ${score}/${totalQuestions}. Resiliencia y sabiduría.</div>`;
+                    feedbackDiv.innerHTML = '✨ reflexiona sobre lo aprendido';
+                    nextBtn.disabled = true;
+                    // opcional: esconder respuestas
+                }
+            }
+
+            // inicializar
+            renderQuestion();
+
+            // Asociar evento al botón next (se reinjecta cada vez, pero el elemento existe siempre)
+            nextBtn.addEventListener('click', nextQuestion);
+
+            // opcional: reiniciar juego (no solicitado, pero botón mágico?) lo dejamos como está.
+        })();
+    </script>
+    <!-- pequeño ajuste extra para mantener accesibilidad -->
+    <noscript>Necesitas JavaScript para el juego interactivo</noscript>
+</body>
+</html>

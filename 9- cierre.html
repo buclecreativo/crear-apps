@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucle Creativo · Cierre de Proyecto</title>
+    <!-- Fuentes modernas y armónicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para íconos (versión gratuita) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0b2b40;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 8vw, 3.8rem);
+            background: linear-gradient(135deg, #1A4855, #2F6C7A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .contenedor {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* Encabezado con diseño limpio */
+        header {
+            background-color: #ffffffdd;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #cbd5e1;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,20,10,0.03);
+        }
+
+        .header-contenido {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 1.5rem;
+        }
+
+        .logo-marca {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-marca .bucle {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #1A4855;
+            line-height: 1.2;
+        }
+
+        .logo-marca .firma {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #4b6b7a;
+            font-style: italic;
+        }
+
+        .tema-etiqueta {
+            background: #1A4855;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tema-etiqueta i {
+            font-size: 1rem;
+        }
+
+        /* tarjetas y bloques */
+        .card {
+            background: #ffffff;
+            border-radius: 32px;
+            padding: 2.2rem 2rem;
+            box-shadow: 0 10px 25px -10px rgba(0,40,30,0.15);
+            margin-bottom: 2.5rem;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 30px -10px #1a485530;
+        }
+
+        .objetivo-badge {
+            display: inline-block;
+            background: #d0e6ed;
+            color: #1A4855;
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            margin-bottom: 1.5rem;
+        }
+
+        .iconografia {
+            font-size: 2rem;
+            color: #2F6C7A;
+            margin-right: 0.75rem;
+            vertical-align: middle;
+        }
+
+        .grid-doble {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .concepto-item {
+            background: #f1f5f9;
+            border-radius: 24px;
+            padding: 1.8rem 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .concepto-item h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+            color: #0f3b4a;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #b0d4de, transparent);
+            margin: 2rem 0 1.5rem;
+        }
+
+        /* reto final */
+        .reto-destacado {
+            background: linear-gradient(145deg, #f0f7fa, #ffffff);
+            border-left: 8px solid #dd6b4b;
+            border-radius: 24px;
+            padding: 2.2rem;
+        }
+
+        .btn-reto {
+            background: #dd6b4b;
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-reto:hover {
+            background: #b64428;
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px #dd6b4b60;
+        }
+
+        /* zona de juego (test) */
+        .test-container {
+            background: #162f38;
+            background-image: radial-gradient(circle at 20% 30%, #255f6e, #10262e);
+            color: #f0f9fa;
+            border-radius: 40px;
+            padding: 2.5rem 2rem;
+        }
+
+        .pregunta-card {
+            background: #ffffff10;
+            backdrop-filter: blur(4px);
+            border-radius: 32px;
+            padding: 2rem;
+            border: 1px solid #4794aa50;
+            margin-bottom: 1.5rem;
+        }
+
+        .pregunta-texto {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .opcion {
+            background: #2b5768;
+            border-radius: 60px;
+            padding: 1rem 1.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.15s;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .opcion:hover {
+            background: #3a7085;
+            border-color: #b3dfef;
+        }
+
+        .opcion.seleccionada-correcta {
+            background: #289f70;
+            border-color: #c0f0d0;
+            box-shadow: 0 0 0 2px #fff;
+        }
+
+        .opcion.seleccionada-incorrecta {
+            background: #c05a5a;
+            border-color: #fbc1c1;
+        }
+
+        .feedback {
+            margin: 1.5rem 0 1rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .puntaje {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: #0c1f26;
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            display: inline-block;
+            border: 1px solid #38b2c0;
+        }
+
+        .btn-siguiente {
+            background: #f0b349;
+            border: none;
+            color: #10262e;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.15s;
+            margin-top: 1.5rem;
+            border: 2px solid #fad487;
+        }
+
+        .btn-siguiente:disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        footer {
+            background: #e2e8f0;
+            border-radius: 60px 60px 0 0;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            font-weight: 500;
+            color: #1f4b59;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .opciones {
+                grid-template-columns: 1fr;
+            }
+            .header-contenido {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: start;
+            }
+            .card {
+                padding: 1.8rem 1.2rem;
+            }
+        }
+
+        /* util */
+        .seleccionado {
+            filter: drop-shadow(0 0 4px #bfdbf3);
+        }
+        .italic {
+            font-style: italic;
+            color: #2c5f6e;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-contenido">
+            <div class="logo-marca">
+                <span class="bucle">Bucle creativo</span>
+                <span class="firma">Taller diseñado con el corazón de un docente y la mente de un programador.</span>
+            </div>
+            <div class="tema-etiqueta">
+                <i class="fas fa-code-branch"></i>  9 · Cierre del proyecto
+            </div>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <!-- TÍTULO PRINCIPAL LLAMATIVO -->
+        <h1>✨ No es un adiós, es una entrega<br>con propósito. ✨</h1>
+
+        <!-- OBJETIVO DE APRENDIZAJE -->
+        <section class="card">
+            <span class="objetivo-badge"><i class="fas fa-bullseye iconografia"></i> OBJETIVO DE APRENDIZAJE</span>
+            <p style="font-size: 1.5rem; font-weight: 500; max-width: 900px;">Construir y documentar el cierre de una aplicación propia, integrando la entrega del producto final, la redacción de manuales (técnico y de usuario), la evaluación de resultados y la extracción de lecciones aprendidas, para desarrollar una visión crítica, ética y resiliente sobre el ciclo de vida del software y su impacto en la comunidad.</p>
+        </section>
+
+        <!-- CONTEXTUALIZACIÓN (narrativa cercana) -->
+        <section class="card">
+            <h2 style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem;"><i class="fas fa-seedling iconografia"></i> El proyecto vive en quienes lo usan</h2>
+            <p style="font-size: 1.2rem;">¿Recuerdas cuando, hace unas semanas, apenas era una idea difusa en un cuaderno? Tal vez una app para organizar las tareas del cole, o para visibilizar los emprendimientos de tu barrio. Ahora, después de líneas de código, pruebas, caídas y subidas, <strong>estás a punto de soltarla al mundo</strong>. Da un poco de vértigo, ¿cierto? Como cuando terminas un mural y das un paso atrás. Pero en realidad este "cierre" es el verdadero inicio: lo que aprendiste, lo que documentaste, la huella que dejas, todo eso seguirá girando. Como diría un estoico: <span class="italic">“El fruto de este trabajo no es la app, sino el carácter que forjaste al crearla”</span>.  Hoy celebramos eso: entregar, reflexionar y aprender para siempre.</p>
+        </section>
+
+        <!-- DESARROLLO: conceptos detallados con ejemplos prácticos -->
+        <section class="card">
+            <h2><i class="fas fa-cubes iconografia"></i> Arquitectura del cierre: lo que sostiene el proyecto</h2>
+            <div class="grid-doble">
+                <!-- Entrega producto final -->
+                <div class="concepto-item">
+                    <h3><i class="fas fa-box-open" style="color: #1A4855;"></i> 1. Entrega del producto final</h3>
+                    <p>No es solo subir archivos. Es <strong>preparar el "empaque"</strong>: código limpio, comentarios claros, versión estable. Ejemplo: tu app “Recicla+EC” debe correr sin errores en el móvil de la señora María del mercado. Pruébenlo con usuarios reales, graben su reacción. Esa es la entrega con alma.</p>
+                </div>
+                <!-- Documentación final -->
+                <div class="concepto-item">
+                    <h3><i class="fas fa-book-open" style="color: #1A4855;"></i> 2. Documentación final</h3>
+                    <p><strong>Manual técnico:</strong> diagrama de componentes, librerías, configuración. Ej: "El módulo de geolocalización usa Leaflet". <strong>Manual de usuario:</strong> lenguaje cálido, con capturas y pasos. Piensa en tu abuela explicándole a una amiga cómo usar tu app. Eso es cercanía.</p>
+                </div>
+                <!-- Evaluación resultados -->
+                <div class="concepto-item">
+                    <h3><i class="fas fa-chart-line" style="color: #1A4855;"></i> 3. Evaluación de resultados</h3>
+                    <p>Comparar lo planeado con lo obtenido: ¿resolvió el problema? Usa encuestas breves (Google Forms) con usuarios. Ejemplo: “¿Te ayudó a recordar los días de reciclaje?”. Mide el impacto, recoge evidencias. No es solo nota, es mejora continua.</p>
+                </div>
+                <!-- Lecciones aprendidas -->
+                <div class="concepto-item">
+                    <h3><i class="fas fa-brain" style="color: #1A4855;"></i> 4. Lecciones aprendidas</h3>
+                    <p>El tesoro oculto. Reúnanse como equipo (o contigo mismo) y respondan: ¿qué hicimos bien? ¿qué haríamos diferente? Tal vez aprendiste que validar con usuarios temprano ahorra semanas. Escríbelo. <em>Es la sabiduría que el próximo proyecto agradecerá.</em></p>
+                </div>
+            </div>
+            <hr>
+            <p style="font-size: 1.15rem;"><i class="fas fa-lightbulb" style="color: #dd6b4b;"></i>  <strong>Experimenta:</strong> entrevista a un compañero que use tu app, pídele que lea el manual de usuario y observa dónde duda. Eso te dará pistas para mejorarlo. Reflexiona: ¿cómo te hace sentir ver a otro usando algo que creaste?</p>
+        </section>
+
+        <!-- RETO FINAL (aprendizaje basado en problemas) -->
+        <section class="reto-destacado">
+            <h2 style="font-size: 2rem; display: flex; gap: 0.8rem;"><i class="fas fa-crown" style="color: #dd6b4b;"></i> El reto final: KICKOFF DE LA ENTREGA</h2>
+            <p style="font-size: 1.3rem; margin: 1rem 0;">Imagina que tu equipo ha sido contratado por la prefectura de tu provincia para lanzar una app que visibilice a jóvenes artistas. Debes presentar el <strong>cierre del piloto</strong>. Tu tarea (en equipo):</p>
+            <ul style="font-size: 1.2rem; margin-left: 1.8rem; list-style-type: '🎯 '; line-height: 2;">
+                <li>Prepara el enlace de descarga / repositorio final (puede ser simulado).</li>
+                <li>Redacta una página web mínima (o PDF) con el manual de usuario (con capturas) y un apartado técnico (arquitectura, tecnologías).</li>
+                <li>Aplica una mini encuesta a 3 compañeros y extrae 3 lecciones aprendidas.</li>
+                <li>Presenten en 5 minutos su "cápsula de cierre": qué aprendieron como equipo y cómo ese aprendizaje transformará su próximo proyecto.</li>
+            </ul>
+            <button class="btn-reto" onclick="alert('🚀 ¡Vamos! Recuerda: la resiliencia se construye documentando incluso lo que no salió perfecto. Tienes esto.')"><i class="fas fa-rocket"></i>  Tomar el reto</button>
+        </section>
+
+        <!-- EVALUACIÓN LÚDICA: juego tipo test interactivo -->
+        <section class="test-container" id="juego">
+            <h2 style="color: white; display: flex; gap: 10px; border-bottom: 2px solid #5faabe; padding-bottom: 1rem;"><i class="fas fa-gamepad"></i> Quiz: Cierre con estilo</h2>
+            <p style="color: #c9e3ea; margin-bottom: 1.5rem;">Demuestra lo aprendido... ¡y diviértete!</p>
+            
+            <!-- contenedor dinámico de pregunta -->
+            <div id="preguntaActual" class="pregunta-card">
+                <div class="pregunta-texto" id="preguntaTexto">Cargando...</div>
+                <div class="opciones" id="opcionesContenedor"></div>
+                <div class="feedback" id="feedbackMensaje">
+                    <span id="feedbackIcono"></span>
+                    <span id="feedbackTexto"></span>
+                </div>
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                <div class="puntaje" id="puntajeDisplay">🏆 0 / 5</div>
+                <button class="btn-siguiente" id="btnSiguiente" disabled><i class="fas fa-arrow-right"></i> Siguiente pregunta</button>
+            </div>
+        </section>
+
+        <!-- Pie de página fijo -->
+        <footer>
+            Diseñado por: Edwin Méndez J.
+        </footer>
+    </main>
+
+    <script>
+        (function(){
+            // ---------- PREGUNTAS (test lúdico) ----------
+            const preguntas = [
+                {
+                    pregunta: "¿Qué incluye UNA PARTE FUNDAMENTAL de la entrega del producto final?",
+                    opciones: ["Solo el código sin comentarios", "Preparar un empaque: código limpio, estable y probado con usuarios", "Una carpeta con capturas de pantalla", "El diagrama de red"],
+                    correcta: 1,
+                    retro: "¡Exacto! La entrega con alma incluye un producto funcional y probado. Las otras opciones son solo fragmentos."
+                },
+                {
+                    pregunta: "¿Cuál es la diferencia clave entre manual técnico y manual de usuario?",
+                    opciones: ["El técnico es para programadores (arquitectura), el de usuario para cualquier persona (pasos sencillos)", "El técnico tiene más dibujos", "El de usuario se escribe en inglés", "No hay diferencia"],
+                    correcta: 0,
+                    retro: "¡Correcto! El técnico habla de librerías y config; el de usuario usa lenguaje cercano."
+                },
+                {
+                    pregunta: "¿Para qué sirve evaluar resultados en un proyecto?",
+                    opciones: ["Para sacar una mala nota", "Para comparar lo planeado con lo obtenido y medir impacto", "Para llenar formularios aburridos", "Para alargar el proyecto"],
+                    correcta: 1,
+                    retro: "¡Sí! Evaluar te da evidencia del impacto y guía mejoras. No es burocracia, es aprendizaje."
+                },
+                {
+                    pregunta: "¿Qué son las 'lecciones aprendidas'?",
+                    opciones: ["Una lista de errores para castigarse", "Lo que hicimos bien y lo que haríamos diferente; sabiduría para futuros proyectos", "Solo las felicitaciones", "Un requisito sin valor"],
+                    correcta: 1,
+                    retro: "¡Exactamente! Es el tesoro escondido del proyecto. Nos hace resilientes."
+                },
+                {
+                    pregunta: "¿Cómo se relaciona el estoicismo con el cierre de un proyecto?",
+                    opciones: ["Renunciar a todo", "Valorar el proceso, el carácter forjado y soltar el resultado con serenidad", "No importa la app, solo la nota", "Llorar porque terminó"],
+                    correcta: 1,
+                    retro: "¡Bingo! El estoicismo nos recuerda que el fruto es el aprendizaje y el crecimiento interior, más allá del producto."
+                }
+            ];
+
+            let indiceActual = 0;
+            let puntaje = 0;
+            let respuestaSeleccionada = false; // para bloquear doble respuesta
+            let opcionSeleccionadaId = null;
+            const totalPreguntas = preguntas.length;
+
+            // elementos del DOM
+            const preguntaTexto = document.getElementById('preguntaTexto');
+            const opcionesDiv = document.getElementById('opcionesContenedor');
+            const feedbackMensaje = document.getElementById('feedbackMensaje');
+            const feedbackIcono = document.getElementById('feedbackIcono');
+            const feedbackTexto = document.getElementById('feedbackTexto');
+            const btnSiguiente = document.getElementById('btnSiguiente');
+            const puntajeSpan = document.getElementById('puntajeDisplay');
+
+            // mostrar puntaje actualizado
+            function actualizarPuntaje() {
+                puntajeSpan.innerHTML = `🏆 ${puntaje} / ${totalPreguntas}`;
+            }
+
+            // limpiar clases de selección previas
+            function resetSeleccionVisual() {
+                const opciones = document.querySelectorAll('.opcion');
+                opciones.forEach(op => {
+                    op.classList.remove('seleccionada-correcta', 'seleccionada-incorrecta');
+                });
+            }
+
+            // cargar la pregunta en el índice actual
+            function cargarPregunta() {
+                resetSeleccionVisual();
+                respuestaSeleccionada = false;
+                opcionSeleccionadaId = null;
+                btnSiguiente.disabled = true;
+
+                const p = preguntas[indiceActual];
+                preguntaTexto.innerText = p.pregunta;
+
+                // generar opciones
+                let htmlOpciones = '';
+                p.opciones.forEach((opcion, idx) => {
+                    htmlOpciones += `<div class="opcion" data-opcion-id="${idx}">${opcion}</div>`;
+                });
+                opcionesDiv.innerHTML = htmlOpciones;
+
+                // quitar feedback
+                feedbackMensaje.style.opacity = '0.5';
+                feedbackIcono.innerHTML = '';
+                feedbackTexto.innerText = 'Selecciona una opción';
+
+                // añadir listeners a las nuevas opciones
+                document.querySelectorAll('.opcion').forEach(op => {
+                    op.addEventListener('click', function(e) {
+                        if (respuestaSeleccionada) return; // ya respondió
+
+                        const idOpcion = parseInt(this.dataset.opcionId);
+                        const esCorrecta = (idOpcion === p.correcta);
+                        opcionSeleccionadaId = idOpcion;
+
+                        // marcar visual
+                        resetSeleccionVisual();
+                        if (esCorrecta) {
+                            this.classList.add('seleccionada-correcta');
+                            puntaje++;
+                            actualizarPuntaje();
+                            feedbackIcono.innerHTML = '✅';
+                            feedbackTexto.innerText = p.retro + ' (correcta)';
+                        } else {
+                            this.classList.add('seleccionada-incorrecta');
+                            // también resaltar la correcta (opcional)
+                            document.querySelectorAll('.opcion').forEach(el => {
+                                if (parseInt(el.dataset.opcionId) === p.correcta) {
+                                    el.classList.add('seleccionada-correcta');
+                                }
+                            });
+                            feedbackIcono.innerHTML = '❌';
+                            feedbackTexto.innerText = p.retro + ' (incorrecta)';
+                        }
+                        respuestaSeleccionada = true;
+                        btnSiguiente.disabled = false; // habilitar siguiente
+                    });
+                });
+            }
+
+            // evento siguiente pregunta
+            btnSiguiente.addEventListener('click', function() {
+                if (indiceActual < totalPreguntas - 1) {
+                    indiceActual++;
+                    cargarPregunta();
+                } else {
+                    // fin del juego
+                    preguntaTexto.innerText = "🎉 ¡Has completado el desafío!";
+                    opcionesDiv.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 2rem; background: #1b4755; border-radius: 60px;">Has aprendido y reflexionado como un verdadero desarrollador. Sigue documentando tu camino.</div>`;
+                    feedbackMensaje.style.opacity = '0';
+                    btnSiguiente.disabled = true;
+                    btnSiguiente.innerText = '¡Lo lograste!';
+                    // no incrementar más
+                }
+            });
+
+            // inicializar juego
+            cargarPregunta();
+            actualizarPuntaje();
+
+            // mensaje inicial feedback
+            feedbackIcono.innerHTML = '🔮';
+            feedbackTexto.innerText = 'Selecciona una opción';
+
+        })();
+    </script>
+</body>
+</html>
